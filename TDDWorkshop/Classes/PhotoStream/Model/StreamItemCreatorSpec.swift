@@ -37,26 +37,53 @@ class StreamItemCreatorSpec: QuickSpec {
 
             describe("create item") {
 
-                //TODO: Task 2
-                /*
                 context("when no source is available") {
                     beforeEach {
                         resourceAvailability.fakeSources = []
+                        sut.createStreamItem()
+                    }
+                    it("should NOT present alert controller") {
+                        expect(presenter.capturedPresentedViewController as? UIAlertController).to(beNil())
+                    }
+                    it("should NOT present image picker controller") {
+                        expect(presenter.capturedPresentedViewController as? UIImagePickerController).to(beNil())
+                    }
+                    it("should inform delegate about failure") {
+                        expect(testDelegate.failedWithErrorCalled) == true
                     }
                 }
 
                 context("when photo library is only available") {
                    beforeEach {
-                        resourceAvailability.fakeSources = [.PhotoLibrary]
+                       resourceAvailability.fakeSources = [.photoLibrary]
+                       sut.createStreamItem()
+                    }
+                    it("should NOT present alert controller") {
+                        expect(presenter.capturedPresentedViewController as? UIAlertController).to(beNil())
+                    }
+                    it("should present image picker controller") {
+                        expect(presenter.capturedPresentedViewController as? UIImagePickerController).notTo(beNil())
+                    }
+                    it("should present picker with camera source type") {
+                        expect(pickerFactory.capturedSourceType!) == UIImagePickerControllerSourceType.photoLibrary
                     }
                 }
 
                 context("when camera is only available") {
                    beforeEach {
-                        resourceAvailability.fakeSources = [.Camera]
+                       resourceAvailability.fakeSources = [.camera]
+                       sut.createStreamItem()
+                    }
+                    it("should NOT present alert controller") {
+                        expect(presenter.capturedPresentedViewController as? UIAlertController).to(beNil())
+                    }
+                    it("should present image picker controller") {
+                        expect(presenter.capturedPresentedViewController as? UIImagePickerController).notTo(beNil())
+                    }
+                    it("should present picker with camera source type") {
+                        expect(pickerFactory.capturedSourceType!) == UIImagePickerControllerSourceType.camera
                     }
                 }
-                */
 
                 context("when photo library and camera are available") {
                     beforeEach {
@@ -128,7 +155,7 @@ class StreamItemCreatorSpec: QuickSpec {
                             it("should present image picker") {
                                 expect(presenter.capturedPresentedViewController as? UIImagePickerController).notTo(beNil())
                             }
-                            it("should present picker with Camera source type") {
+                            it("should present picker with camera source type") {
                                 expect(pickerFactory.capturedSourceType!) == UIImagePickerControllerSourceType.camera
                             }
                         }

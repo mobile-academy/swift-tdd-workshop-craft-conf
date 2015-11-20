@@ -12,13 +12,16 @@ class TestStreamItemCreatorDelegate: ItemCreatingDelegate {
     var capturedStreamItem: StreamItem?
     var capturedError: Error?
 
-    // MARK: ItemCreatingDelegate
+    var failedWithErrorCalled = false
+
+    //MARK: ItemCreatingDelegate
 
     func creator(_ creator: ItemCreating, didCreateItem item: StreamItem) {
         capturedStreamItem = item
     }
 
     func creator(_ creator: ItemCreating, failedWithError error: Error) {
+        failedWithErrorCalled = true
         capturedError = error
     }
 
