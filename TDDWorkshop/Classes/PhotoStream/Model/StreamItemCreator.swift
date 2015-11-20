@@ -40,25 +40,21 @@ class StreamItemCreator: NSObject, ItemCreating, UIImagePickerControllerDelegate
 
     // MARK: UIImagePickerControllerDelegate
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String:Any]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            let scaledImage = imageManipulator.scaleImage(image, maxDimension: 600)
-            let imageData = imageManipulator.dataFromImage(scaledImage, quality: 0.7)
-            let streamItem = StreamItem(title: "Always the same", creationDate: Date())
-            streamItem.imageData = imageData
-            streamItem.identifier = NSUUID().uuidString
-
-            //TODO: Task 3
-            //TODO: Fix issue that all stream items have the same, hardcoded title
-            //TODO: Test and refactor code around image scaling
-            //TODO: Prompt user with an alert with text field, so he can provide title
-
-            delegate?.creator(self, didCreateItem: streamItem)
-            controllerPresenter.dismissViewController(picker)
-        } else {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        controllerPresenter.dismissViewController(picker)
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             let error = NSError(domain: "TDDWorkshop", code: -1, userInfo: nil)
             delegate?.creator(self, failedWithError: error)
+            return
         }
+        let alertController = createTitleAlertController()
+        let alertAction = actionFactory.createActionWithTitle("OK", style: .default) {
+            [weak self] action in
+            let title = self?.itemTitleFromTitleAlertController(alertController)
+            let streamItem = self?.createItemWithTitle(title!, pickedImage: image)
+            self?.delegate?.creator(self!, didCreateItem: streamItem!)
+        }
+        alertController.addAction(alertAction)
     }
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -67,11 +63,45 @@ class StreamItemCreator: NSObject, ItemCreating, UIImagePickerControllerDelegate
 
     // MARK: Private methods
 
+    fileprivate func itemTitleFromTitleAlertController(_ alertController: UIAlertController) -> String {
+        guard let title = alertController.textFields?.first?.text else {
+            return "No title provided:("
+        }
+        return title
+    }
+
+    fileprivate func createItemWithTitle(_ title: String, pickedImage image: UIImage) -> StreamItem {
+        let scaledImage = imageManipulator.scaleImage(image, maxDimension: 600)
+        let imageData = imageManipulator.dataFromImage(scaledImage, quality: 0.7)
+        let streamItem = StreamItem(title: title, creationDate: Date())
+        streamItem.imageData = imageData
+        streamItem.identifier = NSUUID().uuidString
+        return streamItem
+    }
+
+    fileprivate func createTitleAlertController() -> UIAlertController {
+        let alertController = UIAlertController(title: "Title of the item", message: nil, preferredStyle: .alert)
+        controllerPresenter.presentViewController(alertController)
+        alertController.addTextField {
+            textField in
+            textField.placeholder = "Something funny"
+        }
+        return alertController
+    }
+
     fileprivate func presentSourcesActionSheet() {
         let alertController = UIAlertController(title: "Add new Item to the stream", message: nil, preferredStyle: .actionSheet)
+        addImagePickerActionsToAlertController(alertController, forSources: resourceAvailability.availableSources())
+        let cancelAction = actionFactory.createActionWithTitle("Cancel", style: .cancel) {
+            action in
+        }
+        alertController.addAction(cancelAction)
+        controllerPresenter.presentViewController(alertController)
+    }
 
-        let availableSources = resourceAvailability.availableSources()
-        for source in availableSources {
+    fileprivate func addImagePickerActionsToAlertController(_ alertController: UIAlertController,
+                                                        forSources sources: [UIImagePickerControllerSourceType]) {
+        for source in sources {
             switch (source) {
             case .photoLibrary:
                 let alertAction = actionFactory.createActionWithTitle("Pick from Library", style: .default) {
@@ -89,11 +119,6 @@ class StreamItemCreator: NSObject, ItemCreating, UIImagePickerControllerDelegate
                 break
             }
         }
-        let cancelAction = actionFactory.createActionWithTitle("Cancel", style: .cancel) {
-            action in
-        }
-        alertController.addAction(cancelAction)
-        controllerPresenter.presentViewController(alertController)
     }
 
     fileprivate func presentPickerWithResourceType(_ sourceType: UIImagePickerControllerSourceType) {
@@ -101,5 +126,4 @@ class StreamItemCreator: NSObject, ItemCreating, UIImagePickerControllerDelegate
         imagePicker.delegate = self
         controllerPresenter.presentViewController(imagePicker)
     }
-
 }
