@@ -13,8 +13,9 @@ class SpeakersViewControllerSpec: QuickSpec {
 
             beforeEach {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let navigationController = storyboard.instantiateViewControllerWithIdentifier("Speakers") as! NavigationController
 
-                sut = storyboard.instantiateViewControllerWithIdentifier("Speakers") as! SpeakersViewController
+                sut = navigationController.topViewController as! SpeakersViewController
             }
 
             afterEach {
@@ -80,7 +81,7 @@ class SpeakersViewControllerSpec: QuickSpec {
 
                 describe("speakers") {
 
-                    var speakers: Array<Speaker>?
+                    var speakers: [Speaker]?
 
                     beforeEach {
                         speakers = dataSource?.speakers

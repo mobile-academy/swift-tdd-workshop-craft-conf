@@ -14,6 +14,8 @@
 		1EDB8E6D471D2514A3B408C7 /* AgendaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB8BD6044DBF8C91286E6B /* AgendaProvider.swift */; };
 		1EDB8F92B79DBAE4AC4CB78E /* UITableViewFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB874474DA5D4CF5A3AD8B /* UITableViewFake.swift */; };
 		2216846FF762DBD08E3D29AB /* Pods_TDDWorkshop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCDFA6B58F9CD6B705BB810C /* Pods_TDDWorkshop.framework */; };
+		43C1FF431D1550E000C50CF5 /* MobileAcademyStyleSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1FF411D1550E000C50CF5 /* MobileAcademyStyleSheet.swift */; };
+		43C1FF441D1550E000C50CF5 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1FF421D1550E000C50CF5 /* NavigationController.swift */; };
 		43FA23BF1BF8811900A5AD35 /* SpeakersCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A9F0CC5F26F99BDEC1E9D /* SpeakersCollectionViewLayout.swift */; };
 		51043027EBDFCEFE5D0A73F1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043554A6BA672E01979F0C /* Colors.swift */; };
 		5104307313CB15930541CF03 /* StreamItemCreatorFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5104385522E2286683C8940F /* StreamItemCreatorFake.swift */; };
@@ -96,6 +98,8 @@
 		1EDB8E368F80DB7AC3EFC560 /* AgendaViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaViewControllerSpec.swift; sourceTree = "<group>"; };
 		1EDB8F6FF6A6A335AAB1444F /* AgendaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaItem.swift; sourceTree = "<group>"; };
 		1EDB8F9E0A67EFE8740874D4 /* AgendaProviderFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaProviderFake.swift; sourceTree = "<group>"; };
+		43C1FF411D1550E000C50CF5 /* MobileAcademyStyleSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileAcademyStyleSheet.swift; sourceTree = "<group>"; };
+		43C1FF421D1550E000C50CF5 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		510430092BFA19DBD863E0EE /* SourceTypeAvailabilityFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceTypeAvailabilityFake.swift; sourceTree = "<group>"; };
 		510430359B6D6EB27730607D /* StreamItemViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemViewControllerSpec.swift; sourceTree = "<group>"; };
 		510430AFBBDF3557A5D8AF14 /* PollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollViewController.swift; sourceTree = "<group>"; };
@@ -298,6 +302,8 @@
 		51043AA44A4F8825A52B6EF1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				43C1FF411D1550E000C50CF5 /* MobileAcademyStyleSheet.swift */,
+				43C1FF421D1550E000C50CF5 /* NavigationController.swift */,
 				51043554A6BA672E01979F0C /* Colors.swift */,
 				510436EDD02D0683A1C59A17 /* ViewControllerPresenting.swift */,
 				510439B03F6E57C8076717EF /* MediaResourceTypeAvailability.swift */,
@@ -686,7 +692,9 @@
 				51043121927C1E86982B46CC /* Configurator.swift in Sources */,
 				51043FF50D487EE58AB2ECC9 /* StreamItemTransformer.swift in Sources */,
 				51043FCBAE02051B24749F47 /* ViewControllerPresenting.swift in Sources */,
+				43C1FF431D1550E000C50CF5 /* MobileAcademyStyleSheet.swift in Sources */,
 				510438B5A55475B2E0049DB8 /* MediaResourceTypeAvailability.swift in Sources */,
+				43C1FF441D1550E000C50CF5 /* NavigationController.swift in Sources */,
 				51043256D33EC8DD17038E3E /* AlertActionCreating.swift in Sources */,
 				51043FA161D6333E1A439928 /* ImagePickerCreating.swift in Sources */,
 				51043D4F7E1A71544A394D05 /* ImageManipulating.swift in Sources */,
