@@ -18,10 +18,10 @@ class SpeakerCollectionViewCell : UICollectionViewCell {
 
         super.init(frame: frame)
         
-        self.titleLabel.setContentHuggingPriority(UILayoutPriorityDefaultLow, forAxis: UILayoutConstraintAxis.Horizontal)
+        self.titleLabel.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: UILayoutConstraintAxis.horizontal)
 
-        self.imageView.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: UILayoutConstraintAxis.Horizontal)
-        self.imageView.setContentCompressionResistancePriority(UILayoutPriorityRequired, forAxis: UILayoutConstraintAxis.Vertical)
+        self.imageView.setContentHuggingPriority(UILayoutPriorityRequired, for: UILayoutConstraintAxis.horizontal)
+        self.imageView.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: UILayoutConstraintAxis.vertical)
 
         self.contentView.addSubview(self.titleLabel)
         self.contentView.addSubview(self.imageView)
@@ -35,17 +35,17 @@ class SpeakerCollectionViewCell : UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func installConstraints () {
+    fileprivate func installConstraints () {
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
 
         let views = ["title" : self.titleLabel, "image" : self.imageView]
 
-        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("|-(9)-[image]-(9)-[title]-|", options:[], metrics:nil, views:views)
+        var constraints = NSLayoutConstraint.constraints(withVisualFormat: "|-(9)-[image]-(9)-[title]-|", options:[], metrics:nil, views:views)
 
-        constraints.append(NSLayoutConstraint(item:self.titleLabel, attribute:NSLayoutAttribute.CenterY, relatedBy:NSLayoutRelation.Equal, toItem:self.contentView, attribute:NSLayoutAttribute.CenterY, multiplier:1, constant:0))
-        constraints.append(NSLayoutConstraint(item:self.imageView, attribute:NSLayoutAttribute.CenterY, relatedBy:NSLayoutRelation.Equal, toItem:self.contentView, attribute:NSLayoutAttribute.CenterY, multiplier:1, constant:0))
+        constraints.append(NSLayoutConstraint(item:self.titleLabel, attribute:NSLayoutAttribute.centerY, relatedBy:NSLayoutRelation.equal, toItem:self.contentView, attribute:NSLayoutAttribute.centerY, multiplier:1, constant:0))
+        constraints.append(NSLayoutConstraint(item:self.imageView, attribute:NSLayoutAttribute.centerY, relatedBy:NSLayoutRelation.equal, toItem:self.contentView, attribute:NSLayoutAttribute.centerY, multiplier:1, constant:0))
 
-        NSLayoutConstraint.activateConstraints(constraints)
+        NSLayoutConstraint.activate(constraints)
     }
 }

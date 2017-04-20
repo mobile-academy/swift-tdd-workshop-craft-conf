@@ -7,27 +7,27 @@
 //
 
 import Foundation
-import Parse
 
 class PollManager {
     static let sharedInstance = PollManager()
 
-    private(set) var pollAlreadySent: Bool = false
+    fileprivate(set) var pollAlreadySent: Bool = false
 
-    func sendPoll(poll: Poll, completion: ((Bool) -> ())?) {
-        let pollObject = PFObject(className: "Poll", dictionary: poll.toJSON())
-        pollObject.saveInBackgroundWithBlock {
-            [weak self] (success, error) in
-
-            self?.pollAlreadySent = success
-
-            if let error = error {
-                print("Error sending poll: \(error.description)")
-            }
-            if let completion = completion {
-                completion(success)
-            }
-        }
+    func sendPoll(_ poll: Poll, completion: ((Bool) -> ())?) {
+//TODO fix me using Firebase!
+//        let pollObject = PFObject(className: "Poll", dictionary: poll.toJSON())
+//        pollObject.saveInBackground {
+//            [weak self] (success, error) in
+//
+//            self?.pollAlreadySent = success
+//
+//            if let error = error {
+//                print("Error sending poll: \(error.description)")
+//            }
+//            if let completion = completion {
+//                completion(success)
+//            }
+//        }
     }
 }
 
@@ -55,25 +55,25 @@ struct Poll {
             return nil
         }
         return [
-                "name": name,
-                "email": email,
-                "comments": self.comments ?? "",
+                "name": name as AnyObject,
+                "email": email as AnyObject,
+                "comments": self.comments as AnyObject ?? "" as AnyObject,
                 "items": self.items?.map {
                     [
                             "title": $0.title ?? "",
                             "rate": $0.rate ?? 0,
                             "comment": $0.comment ?? ""
                     ]
-                } ?? []
+                } as AnyObject ?? [] as AnyObject
         ]
     }
 }
 
 class PollBuilder {
-    private var name: String?
-    private var email: String?
-    private var comments: String?
-    private var items: [String:Poll.Item] = [:]
+    fileprivate var name: String?
+    fileprivate var email: String?
+    fileprivate var comments: String?
+    fileprivate var items: [String:Poll.Item] = [:]
 
     func isValid() -> Bool {
         return self.poll().isValid()
@@ -85,22 +85,22 @@ class PollBuilder {
 
     // MARK: Poll building
 
-    func setName(name: String?) -> PollBuilder {
+    func setName(_ name: String?) -> PollBuilder {
         self.name = name
         return self
     }
 
-    func setEmail(email: String?) -> PollBuilder {
+    func setEmail(_ email: String?) -> PollBuilder {
         self.email = email
         return self
     }
 
-    func setComments(comments: String?) -> PollBuilder {
+    func setComments(_ comments: String?) -> PollBuilder {
         self.comments = comments
         return self
     }
 
-    func setRate(rate: Int?, forTitle title: String) -> PollBuilder {
+    func setRate(_ rate: Int?, forTitle title: String) -> PollBuilder {
         if var item = items[title] {
             item.rate = rate
         } else {
@@ -109,7 +109,7 @@ class PollBuilder {
         return self
     }
 
-    func setComment(comment: String?, forTitle title: String) -> PollBuilder {
+    func setComment(_ comment: String?, forTitle title: String) -> PollBuilder {
         if var item = items[title] {
             item.comment = comment
         } else {

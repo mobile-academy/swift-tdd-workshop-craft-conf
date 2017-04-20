@@ -9,20 +9,20 @@ protocol ViewControllerPresenting {
 
     weak var viewController: UIViewController? {get set}
 
-    func presentViewController(viewController: UIViewController)
-    func dismissViewController(viewController: UIViewController)
+    func presentViewController(_ viewController: UIViewController)
+    func dismissViewController(_ viewController: UIViewController)
 }
 
 class DefaultViewControllerPresenter: ViewControllerPresenting {
 
     weak var viewController: UIViewController?
 
-    func presentViewController(viewController: UIViewController) {
-        self.viewController?.presentViewController(viewController, animated: true, completion: nil)
+    func presentViewController(_ viewController: UIViewController) {
+        self.viewController?.present(viewController, animated: true, completion: nil)
     }
 
-    func dismissViewController(viewController: UIViewController) {
-        viewController.dismissViewControllerAnimated(true, completion: nil)
+    func dismissViewController(_ viewController: UIViewController) {
+        viewController.dismiss(animated: true, completion: nil)
     }
 
 }

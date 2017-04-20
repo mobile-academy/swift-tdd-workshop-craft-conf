@@ -9,9 +9,9 @@ import TDDWorkshop
 class StreamItemUploaderFake: ItemUploading {
 
     var uploadItemCalled = false
-    var capturedCompletion: ((Bool, ErrorType?) -> ())?
+    var capturedCompletion: ((Bool, Error?) -> ())?
 
-    func uploadItem(streamItem: StreamItem, completion: (Bool, ErrorType?) -> ()) {
+    func uploadItem(_ streamItem: StreamItem, completion: @escaping (Bool, Error?) -> ()) {
         uploadItemCalled = true
         capturedCompletion = completion
     }

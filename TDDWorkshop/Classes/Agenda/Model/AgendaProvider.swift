@@ -7,15 +7,15 @@ import Foundation
 protocol AgendaProviding {
     var agendaItems: [AgendaItem] { get }
 
-    func reloadAgenda(completion: () -> ())
+    func reloadAgenda(_ completion: @escaping () -> ())
 }
 
 class AgendaProvider: AgendaProviding {
 
     var agendaItems: [AgendaItem] = []
 
-    func reloadAgenda(completion: () -> ()) {
-        dispatch_async(dispatch_get_global_queue(2, 0)) {
+    func reloadAgenda(_ completion: @escaping () -> ()) {
+        DispatchQueue.global(qos: .default).async {
             self.agendaItems = [
                     AgendaItem(time: "9:00", name: "Introduction"),
                     AgendaItem(time: "11:00", name: "Coffee Break"),
@@ -26,7 +26,7 @@ class AgendaProvider: AgendaProviding {
                     AgendaItem(time: "15:00", name: "Legacy Code"),
             ]
 
-            dispatch_async(dispatch_get_main_queue(), completion)
+            DispatchQueue.main.async(execute: completion)
         }
     }
 }

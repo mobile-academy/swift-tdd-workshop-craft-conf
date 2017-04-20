@@ -24,12 +24,12 @@ extension UIColor {
 class MobileAcademyStyleSheet {
     static func applyStyle() {
         UINavigationBar.appearance().barTintColor = UIColor.ma_tealColor()
-        UINavigationBar.appearance().translucent = false
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        UINavigationBar.appearance().tintColor = UIColor.white
 
         UITabBar.appearance().barTintColor = UIColor.ma_greyColor()
-        UITabBar.appearance().tintColor = UIColor.whiteColor()
+        UITabBar.appearance().tintColor = UIColor.white
 
         UISegmentedControl.appearance().tintColor = UIColor.ma_tealColor()
     }

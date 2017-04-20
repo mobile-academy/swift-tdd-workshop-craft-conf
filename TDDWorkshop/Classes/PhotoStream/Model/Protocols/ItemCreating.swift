@@ -5,8 +5,8 @@
 import Foundation
 
 protocol ItemCreatingDelegate: class {
-    func creator(creator: ItemCreating, didCreateItem item: StreamItem)
-    func creator(creator: ItemCreating, failedWithError: ErrorType)
+    func creator(_ creator: ItemCreating, didCreateItem item: StreamItem)
+    func creator(_ creator: ItemCreating, failedWithError: Error)
 }
 
 protocol ItemCreating {

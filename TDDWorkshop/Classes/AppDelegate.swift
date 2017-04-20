@@ -11,14 +11,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //MARK: UIApplicationDelegate
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         configureApplication(launchOptions)
         return true
     }
 
     //MARK: Helpers
 
-    func configureApplication(launchOptions: [NSObject: AnyObject]?) {
+    func configureApplication(_ launchOptions: [AnyHashable: Any]?) {
         let configurator = Configurator()
         let appConfiguration = ConfigurationFactory().applicationConfiguration()
         configurator.configureApplication(appConfiguration, launchOptions: launchOptions)

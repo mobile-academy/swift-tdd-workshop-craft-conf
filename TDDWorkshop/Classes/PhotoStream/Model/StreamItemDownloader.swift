@@ -3,9 +3,9 @@
 //
 
 import Foundation
-import Parse
 
 class StreamItemDownloader: ItemDownloading {
+
 
     let parseAdapter: ParseAdapting
     var transformer = StreamItemTransformer()
@@ -17,25 +17,25 @@ class StreamItemDownloader: ItemDownloading {
     }
 
     //MARK: ItemDownloading
-
-    func downloadItems(completion: ([StreamItem]?, ErrorType?) -> ()) {
-
-        let query = PFQuery(className:StreamItem.entityName)
-
-        parseAdapter.executeQuery(query) {[weak self] objects, error in
-            guard error == nil,
-            let parseObjects = objects else  {
-                completion(nil, error)
-                return
-            }
-            var streamItems = [StreamItem]()
-            for object in parseObjects {
-                if let streamItem = self?.transformer.streamItemFromParseObject(object) {
-                    streamItems.append(streamItem)
-                }
-            }
-            completion(streamItems, nil)
-        }
+    
+    func downloadItems(_ completion: @escaping ([StreamItem]?, Error?) -> ()) {
+        //TODO fix me using Firebase!
+        
+        //        let query = PFQuery(className:StreamItem.entityName)
+        //
+        //        parseAdapter.executeQuery(query) {[weak self] objects, error in
+        //            guard error == nil,
+        //            let parseObjects = objects else  {
+        //                completion(nil, error)
+        //                return
+        //            }
+        //            var streamItems = [StreamItem]()
+        //            for object in parseObjects {
+        //                if let streamItem = self?.transformer.streamItemFromParseObject(object) {
+        //                    streamItems.append(streamItem)
+        //                }
+        //            }
+        //            completion(streamItems, nil)
+        //        }
     }
-
 }

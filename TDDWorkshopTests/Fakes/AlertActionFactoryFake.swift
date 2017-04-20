@@ -18,7 +18,7 @@ class AlertActionFactoryFake: AlertActionCreating {
         capturedActions = []
     }
 
-    func createActionWithTitle(title: String, style: UIAlertActionStyle, handler: (UIAlertAction) -> ()) -> UIAlertAction {
+    func createActionWithTitle(_ title: String, style: UIAlertActionStyle, handler: @escaping (UIAlertAction) -> ()) -> UIAlertAction {
         let action = UIAlertAction(title: title, style: style, handler: handler)
         capturedHandlers.append(handler)
         capturedActions.append(action)

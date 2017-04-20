@@ -60,7 +60,7 @@ class StreamItemCreatorSpec: QuickSpec {
 
                 context("when photo library and camera are available") {
                     beforeEach {
-                        resourceAvailability.fakeSources = [.PhotoLibrary, .Camera]
+                        resourceAvailability.fakeSources = [.photoLibrary, .camera]
                         sut.createStreamItem()
                     }
                     it("should present alert controller") {
@@ -68,7 +68,7 @@ class StreamItemCreatorSpec: QuickSpec {
                     }
                     it("should present alert controller with action sheet style") {
                         let alertController = presenter.capturedPresentedViewController as! UIAlertController
-                        expect(alertController.preferredStyle) == UIAlertControllerStyle.ActionSheet
+                        expect(alertController.preferredStyle) == UIAlertControllerStyle.actionSheet
                     }
                     it("should present alert controller with title 'Add new Item to the stream'") {
                         let alertController = presenter.capturedPresentedViewController as! UIAlertController
@@ -83,7 +83,7 @@ class StreamItemCreatorSpec: QuickSpec {
                     }
                     it("should present alert controller with 1st option set to Default style") {
                         let alertAction = alertActionFactory.capturedActions[0]
-                        expect(alertAction.style) == UIAlertActionStyle.Default
+                        expect(alertAction.style) == UIAlertActionStyle.default
                     }
                     it("should present alert controller with 2nd option 'Take a Photo'") {
                         let alertAction = alertActionFactory.capturedActions[1]
@@ -91,7 +91,7 @@ class StreamItemCreatorSpec: QuickSpec {
                     }
                     it("should present alert controller with 2nd option set to Default style") {
                         let alertAction = alertActionFactory.capturedActions[1]
-                        expect(alertAction.style) == UIAlertActionStyle.Default
+                        expect(alertAction.style) == UIAlertActionStyle.default
                     }
                     it("should present alert controller with 3rd option 'Cancel'") {
                         let alertAction = alertActionFactory.capturedActions[2]
@@ -99,7 +99,7 @@ class StreamItemCreatorSpec: QuickSpec {
                     }
                     it("should present alert controller with 3rd option set to Cancel style") {
                         let alertAction = alertActionFactory.capturedActions[2]
-                        expect(alertAction.style) == UIAlertActionStyle.Cancel
+                        expect(alertAction.style) == UIAlertActionStyle.cancel
                     }
 
                     context("when user selects") {
@@ -116,7 +116,7 @@ class StreamItemCreatorSpec: QuickSpec {
                                 expect(presenter.capturedPresentedViewController as? UIImagePickerController).notTo(beNil())
                             }
                             it("should present picker with Photo Library source type") {
-                                expect(pickerFactory.capturedSourceType!) == UIImagePickerControllerSourceType.PhotoLibrary
+                                expect(pickerFactory.capturedSourceType!) == UIImagePickerControllerSourceType.photoLibrary
                             }
                         }
                         context("second option") {
@@ -129,7 +129,7 @@ class StreamItemCreatorSpec: QuickSpec {
                                 expect(presenter.capturedPresentedViewController as? UIImagePickerController).notTo(beNil())
                             }
                             it("should present picker with Camera source type") {
-                                expect(pickerFactory.capturedSourceType!) == UIImagePickerControllerSourceType.Camera
+                                expect(pickerFactory.capturedSourceType!) == UIImagePickerControllerSourceType.camera
                             }
                         }
                         context("third option") {

@@ -12,7 +12,7 @@ class AgendaProviderFake: AgendaProviding {
     var reloadAgendaCalled = false
     var completion: (() -> ())?
 
-    func simulateSuccessfulReload(items: [AgendaItem]) {
+    func simulateSuccessfulReload(_ items: [AgendaItem]) {
         self.agendaItems = items
         self.completion?()
     }
@@ -21,7 +21,7 @@ class AgendaProviderFake: AgendaProviding {
 
     var agendaItems: [AgendaItem] = []
 
-    func reloadAgenda(completion: () -> ()) {
+    func reloadAgenda(_ completion: @escaping () -> ()) {
         self.reloadAgendaCalled = true
         self.completion = completion
     }
