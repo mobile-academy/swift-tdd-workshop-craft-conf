@@ -1,5 +1,5 @@
 //
-//  Copyright © 2015 Mobile Academy. All rights reserved.
+//  Copyright © 2017 Mobile Academy. All rights reserved.
 //
 
 import UIKit
@@ -9,14 +9,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    //MARK: UIApplicationDelegate
+    // MARK: UIApplicationDelegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         configureApplication(launchOptions)
         return true
     }
 
-    //MARK: Helpers
+    // MARK: Helpers
 
     func configureApplication(_ launchOptions: [AnyHashable: Any]?) {
         let configurator = Configurator()

@@ -6,7 +6,7 @@ Use only two line header:
 
 ```
 //
-//  Copyright © 2015 Mobile Academy. All rights reserved.
+//  Copyright © 2017 Mobile Academy. All rights reserved.
 //
 
 ```
@@ -16,29 +16,29 @@ Use only two line header:
 Class template proposal:
 ```swift
 class Foo {
-	//MARK: Constants
+	// MARK: Constants
 
 	let key = "FOO BAR 123"
 
-	//MARK: Properties
+	// MARK: Properties
 
 	var foo: String?
 
-	//MARK: Initialisers
+	// MARK: Initialisers
 
 	init() {
 
 	}
 
-	//MARK: Public methods
+	// MARK: Public methods
 
 	func doSomethingWith(foo: Sting) -> Bool {
 		return false
 	}
 
-	//MARK: Private methods
+	// MARK: Private methods
 
-	func someCalculation() -> Int {
+	private func someCalculation() -> Int {
 		return 1+1
 	}
 
@@ -103,4 +103,4 @@ beforeEach {
 
 ## License
 
-Copyright © 2015 Mobile Academy. All rights reserved.
+Copyright © 2017 Mobile Academy. All rights reserved.
