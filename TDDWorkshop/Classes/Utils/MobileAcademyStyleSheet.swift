@@ -7,15 +7,15 @@ import UIKit
 
 extension UIColor {
 
-    static func ma_greyColor() -> UIColor {
+    class var greyColor: UIColor {
         return UIColor(red: 52/255, green: 52/255, blue: 53/255, alpha: 1.0)
     }
 
-    static func ma_tealColor() -> UIColor {
+    class var teal: UIColor {
         return UIColor(red: 66/255, green: 177/255, blue: 211/255, alpha: 1.0)
     }
 
-    static func ma_darkTealColor() -> UIColor {
+    class var maGrey: UIColor {
         return UIColor(red: 62/255, green: 160/255, blue: 183/255, alpha: 1.0)
     }
 }
@@ -23,14 +23,14 @@ extension UIColor {
 
 class MobileAcademyStyleSheet {
     static func applyStyle() {
-        UINavigationBar.appearance().barTintColor = UIColor.ma_tealColor()
+        UINavigationBar.appearance().barTintColor = .teal
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().tintColor = .white
 
-        UITabBar.appearance().barTintColor = UIColor.ma_greyColor()
-        UITabBar.appearance().tintColor = UIColor.white
+        UITabBar.appearance().barTintColor = .maGrey
+        UITabBar.appearance().tintColor = .white
 
-        UISegmentedControl.appearance().tintColor = UIColor.ma_tealColor()
+        UISegmentedControl.appearance().tintColor = .teal
     }
 }

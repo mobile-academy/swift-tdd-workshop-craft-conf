@@ -68,8 +68,11 @@ class SpeakersViewController: UICollectionViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        guard let layout = self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else {
+            fatalError()
+        }
 
-        let layout: UICollectionViewFlowLayout = self.collectionView!.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: self.view.bounds.width, height: 80)
     }
 }
