@@ -9,7 +9,8 @@ target 'TDDWorkshop' do
 	pod 'Eureka', '~> 3.0'
 	pod 'UIImage-Resize'
     pod 'Firebase/Core'
-
+    pod 'Firebase/Database'
+    
 	target 'TDDWorkshopTests' do
 		inherit! :search_paths
 		pod 'Quick'
