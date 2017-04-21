@@ -1,27 +1,21 @@
 PODS:
-  - Bolts/Tasks (1.7.0)
-  - Eureka (1.6.0)
-  - Nimble (4.0.1)
-  - Parse (1.13.0):
-    - Bolts/Tasks (~> 1.6)
-  - Quick (0.9.2)
+  - Eureka (3.0.0)
+  - Nimble (6.1.0)
+  - Quick (1.1.0)
   - UIImage-Resize (1.0.1)
 
 DEPENDENCIES:
-  - Eureka (~> 1.0)
+  - Eureka (~> 3.0)
   - Nimble
-  - Parse
   - Quick
-  - UIImage-Resize (~> 1.0)
+  - UIImage-Resize
 
 SPEC CHECKSUMS:
-  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
-  Eureka: ef5b9ac93aedeecfe50d98b1ac7678bf09a1fc62
-  Nimble: 0f3c8b8b084cda391209c3c5efbb48bedeeb920a
-  Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
-  Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
+  Eureka: f36fd440c3ebb7bfea0a4fbe6f16a05f1cb35906
+  Nimble: c53e6903fee94041b90ded74f135820437d8bf59
+  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   UIImage-Resize: fa776860f10e6900bbaf53a73e494bdceaaccc77
 
-PODFILE CHECKSUM: 3766cf7f23b271c137ebe5d9472499104b95b9ad
+PODFILE CHECKSUM: 489784bf82305c5749aa0dbadf219f854b605bb6
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.1

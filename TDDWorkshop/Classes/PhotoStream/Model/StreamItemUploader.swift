@@ -4,6 +4,8 @@
 
 import Foundation
 
+protocol ParseAdapting {} //TODO this is temporary
+
 class StreamItemUploader: ItemUploading {
 
     let parseAdapter: ParseAdapting
@@ -17,8 +19,9 @@ class StreamItemUploader: ItemUploading {
 
     //MARK: ItemUploading
 
-    func uploadItem(streamItem: StreamItem, completion: (Bool, ErrorType?) -> ()) {
-        let parseObject = transformer.parseObjectFromStreamItem(streamItem)
-        parseAdapter.uploadObject(parseObject, completion: completion)
+    func uploadItem(_ streamItem: StreamItem, completion: @escaping (Bool, Error?) -> ()) {
+        //TODO fix me using Firebase!
+        //        let parseObject = transformer.parseObjectFromStreamItem(streamItem)
+        //        parseAdapter.uploadObject(parseObject, completion: completion)
     }
 }

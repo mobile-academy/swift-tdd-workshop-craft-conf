@@ -7,10 +7,10 @@ import Foundation
 import TDDWorkshop
 
 class StreamItemDownloaderFake: ItemDownloading {
-    var capturedCompletion: (([StreamItem]?, ErrorType?) -> ())?
+    var capturedCompletion: (([StreamItem]?, Error?) -> ())?
     var downloadItemsCalled : Bool = false
-
-    func downloadItems(completion: ([StreamItem]?, ErrorType?) -> ()) {
+    
+    func downloadItems(_ completion: @escaping ([StreamItem]?, Error?) -> ()) {
         capturedCompletion = completion
         downloadItemsCalled = true
     }

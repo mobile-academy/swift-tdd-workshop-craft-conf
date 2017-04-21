@@ -3,10 +3,11 @@
 //
 
 import Foundation
+import UIKit
 
 class NavigationController: UINavigationController {
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }

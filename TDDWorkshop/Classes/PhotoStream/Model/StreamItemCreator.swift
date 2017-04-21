@@ -40,7 +40,7 @@ class StreamItemCreator: NSObject, ItemCreating, UIImagePickerControllerDelegate
 
     //MARK: UIImagePickerControllerDelegate
 
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String:AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String:Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             let scaledImage = imageManipulator.scaleImage(image, maxDimension: 500)
             let imageData = imageManipulator.dataFromImage(scaledImage, quality: 0.7)
@@ -59,42 +59,42 @@ class StreamItemCreator: NSObject, ItemCreating, UIImagePickerControllerDelegate
         }
     }
 
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         controllerPresenter.dismissViewController(picker)
     }
 
     //MARK: Private methods
 
-    private func presentSourcesActionSheet() {
-        let alertController = UIAlertController(title: "Add new Item to the stream", message: nil, preferredStyle: .ActionSheet)
+    fileprivate func presentSourcesActionSheet() {
+        let alertController = UIAlertController(title: "Add new Item to the stream", message: nil, preferredStyle: .actionSheet)
 
         let availableSources = resourceAvailability.availableSources()
         for source in availableSources {
             switch (source) {
-            case .PhotoLibrary:
-                let alertAction = actionFactory.createActionWithTitle("Pick from Library", style: .Default) {
+            case .photoLibrary:
+                let alertAction = actionFactory.createActionWithTitle("Pick from Library", style: .default) {
                     [weak self] action in
-                    self?.presentPickerWithResourceType(.PhotoLibrary)
+                    self?.presentPickerWithResourceType(.photoLibrary)
                 }
                 alertController.addAction(alertAction)
-            case .Camera:
-                let alertAction = actionFactory.createActionWithTitle("Take a Photo", style: .Default) {
+            case .camera:
+                let alertAction = actionFactory.createActionWithTitle("Take a Photo", style: .default) {
                     [weak self] action in
-                    self?.presentPickerWithResourceType(.Camera)
+                    self?.presentPickerWithResourceType(.camera)
                 }
                 alertController.addAction(alertAction)
             default:
                 break
             }
         }
-        let cancelAction = actionFactory.createActionWithTitle("Cancel", style: .Cancel) {
+        let cancelAction = actionFactory.createActionWithTitle("Cancel", style: .cancel) {
             action in
         }
         alertController.addAction(cancelAction)
         controllerPresenter.presentViewController(alertController)
     }
 
-    private func presentPickerWithResourceType(sourceType: UIImagePickerControllerSourceType) {
+    fileprivate func presentPickerWithResourceType(_ sourceType: UIImagePickerControllerSourceType) {
         let imagePicker = pickerFactory.createPickerWithSourceType(sourceType)
         imagePicker.delegate = self
         controllerPresenter.presentViewController(imagePicker)

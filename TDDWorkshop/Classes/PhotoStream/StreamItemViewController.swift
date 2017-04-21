@@ -31,7 +31,7 @@ class StreamItemViewController: UIViewController {
 
     //MARK: Actions
     
-    @IBAction func cancelBarButtonPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true) {}
+    @IBAction func cancelBarButtonPressed(_ sender: AnyObject) {
+        self.dismiss(animated: true) {}
     }
 }

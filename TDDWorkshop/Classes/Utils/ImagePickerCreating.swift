@@ -6,11 +6,11 @@ import Foundation
 import UIKit
 
 protocol ImagePickerCreating {
-    func createPickerWithSourceType(sourceType: UIImagePickerControllerSourceType) -> UIImagePickerController
+    func createPickerWithSourceType(_ sourceType: UIImagePickerControllerSourceType) -> UIImagePickerController
 }
 
 class DefaultImagePickerFactory: ImagePickerCreating {
-    func createPickerWithSourceType(sourceType: UIImagePickerControllerSourceType) -> UIImagePickerController {
+    func createPickerWithSourceType(_ sourceType: UIImagePickerControllerSourceType) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.sourceType = sourceType
         return picker

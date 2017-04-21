@@ -17,11 +17,11 @@ class ViewControllerPresenterFake: ViewControllerPresenting {
 
     weak var viewController: UIViewController?
 
-    func presentViewController(viewController: UIViewController) {
+    func presentViewController(_ viewController: UIViewController) {
         capturedPresentedViewController = viewController
     }
 
-    func dismissViewController(viewController: UIViewController) {
+    func dismissViewController(_ viewController: UIViewController) {
         capturedDismissedViewController = viewController
     }
 

@@ -13,7 +13,7 @@ class SpeakersViewControllerSpec: QuickSpec {
 
             beforeEach {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let navigationController = storyboard.instantiateViewControllerWithIdentifier("Speakers") as! NavigationController
+                let navigationController = storyboard.instantiateViewController(withIdentifier: "Speakers") as! NavigationController
 
                 sut = navigationController.topViewController as! SpeakersViewController
             }
@@ -51,12 +51,12 @@ class SpeakersViewControllerSpec: QuickSpec {
                     describe("when the view lays itself out") {
 
                         beforeEach {
-                            sut.view.bounds = CGRectMake(0, 0, 42, 120)
+                            sut.view.bounds = CGRect(x:0, y:0, width: 42, height: 120)
                             sut.view.layoutIfNeeded()
                         }
 
                         it("should set the item size on collection view layout") {
-                            expect(layout?.itemSize).to(equal(CGSizeMake(42, 80)))
+                            expect(layout?.itemSize).to(equal(CGSize(width: 42, height: 80)))
                         }
                     }
                 }

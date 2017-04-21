@@ -23,7 +23,7 @@ class PhotoStreamViewControllerSpec: QuickSpec {
                 presenter = ViewControllerPresenterFake()
 
                 let storyboard = UIStoryboard(name: "PhotoStream", bundle: nil)
-                sut = storyboard.instantiateViewControllerWithIdentifier("PhotoStream") as! PhotoStreamViewController
+                sut = storyboard.instantiateViewController(withIdentifier: "PhotoStream") as! PhotoStreamViewController
 
                 sut.downloader = downloader
                 sut.uploader = uploader
@@ -44,7 +44,7 @@ class PhotoStreamViewControllerSpec: QuickSpec {
                     var collectionViewFake : UICollectionViewFake!
 
                     beforeEach {
-                        collectionViewFake = UICollectionViewFake(frame: CGRectZero,
+                        collectionViewFake = UICollectionViewFake(frame: CGRect(),
                                 collectionViewLayout: UICollectionViewFlowLayout())
                         refreshControlFake = UIRefreshControlFake()
 
@@ -97,7 +97,7 @@ class PhotoStreamViewControllerSpec: QuickSpec {
                 describe("when pressed") {
                     beforeEach {
                         let action = barButtonItem!.action
-                        sut.performSelector(action, withObject: barButtonItem!)
+                        sut.performSelector(inBackground: action!, with: barButtonItem!)
                     }
                     it("should request item creation") {
                         expect(creator.createItemCalled) == true
@@ -109,7 +109,7 @@ class PhotoStreamViewControllerSpec: QuickSpec {
                 context("item was created") {
                     var fixtureItem: StreamItem!
                     beforeEach {
-                        fixtureItem = StreamItem(title: "Foo", imageData: NSData())
+                        fixtureItem = StreamItem(title: "Foo", imageData: NSData() as Data)
                         sut.creator(creator, didCreateItem: fixtureItem)
                     }
                     it("should upload item") {
@@ -119,7 +119,7 @@ class PhotoStreamViewControllerSpec: QuickSpec {
                         var collectionViewFake : UICollectionViewFake!
 
                         beforeEach {
-                            collectionViewFake = UICollectionViewFake(frame: CGRectZero,
+                            collectionViewFake = UICollectionViewFake(frame: CGRect(),
                                     collectionViewLayout: UICollectionViewFlowLayout())
                             sut.collectionView = collectionViewFake
                         }

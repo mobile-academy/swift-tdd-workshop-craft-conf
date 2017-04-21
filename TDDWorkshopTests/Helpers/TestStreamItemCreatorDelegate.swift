@@ -10,15 +10,15 @@ import TDDWorkshop
 class TestStreamItemCreatorDelegate: ItemCreatingDelegate {
 
     var capturedStreamItem: StreamItem?
-    var capturedError: ErrorType?
+    var capturedError: Error?
 
     //MARK: ItemCreatingDelegate
 
-    func creator(creator: ItemCreating, didCreateItem item: StreamItem) {
+    func creator(_ creator: ItemCreating, didCreateItem item: StreamItem) {
         capturedStreamItem = item
     }
 
-    func creator(creator: ItemCreating, failedWithError error: ErrorType) {
+    func creator(_ creator: ItemCreating, failedWithError error: Error) {
         capturedError = error
     }
 

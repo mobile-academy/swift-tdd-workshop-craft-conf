@@ -33,11 +33,11 @@ class PollViewController: FormViewController {
         configureForm()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.rightBarButtonItem =
                 PollManager.sharedInstance.pollAlreadySent
                 ? nil
-                : UIBarButtonItem(title: "Send", style: .Plain, target: self, action: #selector(didTapSend))
+                : UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(didTapSend))
 
     }
 
@@ -47,18 +47,18 @@ class PollViewController: FormViewController {
             return
         }
 
-        let sendAction = UIAlertAction(title: "Yes", style: .Default) {
+        let sendAction = UIAlertAction(title: "Yes", style: .default) {
             [weak self] _ in
             self?.sendPoll()
         }
 
-        let alert = UIAlertController(title: "Confirmation", message: "You can send it only once.\nDo you want to continue?", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Confirmation", message: "You can send it only once.\nDo you want to continue?", preferredStyle: .alert)
 
         alert.addAction(sendAction)
-        alert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         alert.preferredAction = sendAction
 
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
 
     func sendPoll() {
@@ -66,15 +66,15 @@ class PollViewController: FormViewController {
         PollManager.sharedInstance.sendPoll(poll) {
             [weak self] success in
             if success {
-                self?.navigationItem.setRightBarButtonItem(nil, animated: true)
+                self?.navigationItem.setRightBarButton(nil, animated: true)
             }
         }
     }
 
     func showInvalidPollAlert() {
-        let alert = UIAlertController(title: "Error", message: "Can't send poll.\nFields with * are required.", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Error", message: "Can't send poll.\nFields with * are required.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
     // MARK: Form configuration
@@ -85,13 +85,14 @@ class PollViewController: FormViewController {
     }
 
     func configureGeneralSection() {
-        form +++ Section("General")
+        //TODO please fix me!
+/*        form +++ Section("General")
                 <<<
                 NameRow("name") {
                     $0.title = "Name*"
                     $0.placeholder = "John Smith?"
                 }
-                .onCellHighlight {
+                .onCellHighlightChangedChanged {
                     [weak self] (_, row) in
                     row.onCellUnHighlight {
                         (_, row) in
@@ -140,10 +141,13 @@ class PollViewController: FormViewController {
                         _self.showInvalidValueAlert(row.value)
                     }
                 }
+ */
     }
 
     func configureAgendaSections() {
-        for (i, section) in sections.enumerate() {
+        //TODO please fix me!
+        /*
+        for (i, section) in sections.enumerated() {
             form +++ Section(section)
                     <<<
                     SegmentedRow<Emoji>("rate\(i)") {
@@ -183,47 +187,48 @@ class PollViewController: FormViewController {
                         }
                     }
         }
+ */
     }
 
-    func showInvalidValueAlert(value: String?) {
+    func showInvalidValueAlert(_ value: String?) {
         if let printableValue = value {
             let message = "Value you entered is invalid: \"\(printableValue)\""
-            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
 
     // MARK: Validation
 
-    func validateComment(comment: String?) -> Bool {
-        guard let comment = comment where !comment.isEmpty else {
+    func validateComment(_ comment: String?) -> Bool {
+        guard let comment = comment, !comment.isEmpty else {
             return false
         }
         return comment.characters.count > 10
     }
 
-    func validateEmail(email: String?) -> Bool {
-        guard let email = email where !email.isEmpty else {
+    func validateEmail(_ email: String?) -> Bool {
+        guard let email = email, !email.isEmpty else {
             return false
         }
         let pattern = "[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}"
         let regex = NSPredicate(format: "SELF MATCHES %@", pattern)
-        return regex.evaluateWithObject(email)
+        return regex.evaluate(with: email)
     }
 
-    func validateText(text: String?) -> Bool {
-        guard let text = text where !text.isEmpty else {
+    func validateText(_ text: String?) -> Bool {
+        guard let text = text, !text.isEmpty else {
             return false
         }
         return [
-                NSCharacterSet.illegalCharacterSet(),
-                NSCharacterSet.symbolCharacterSet(),
-                NSCharacterSet.punctuationCharacterSet(),
-                NSCharacterSet.nonBaseCharacterSet(),
-                NSCharacterSet.controlCharacterSet(),
+                CharacterSet.illegalCharacters,
+                CharacterSet.symbols,
+                CharacterSet.punctuationCharacters,
+                CharacterSet.nonBaseCharacters,
+                CharacterSet.controlCharacters,
         ].reduce(true) {
-            $0 || text.rangeOfCharacterFromSet($1) != nil
+            $0 || text.rangeOfCharacter(from: $1) != nil
         }
     }
 }

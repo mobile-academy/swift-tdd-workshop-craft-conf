@@ -19,9 +19,9 @@ class SpeakersCollectionViewDataSourceSpec: QuickSpec {
 
                 sut = SpeakersCollectionViewDataSource(speakers: [speaker1, speaker2])
 
-                collectionView = UICollectionView(frame:CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
-                collectionView?.registerClass(SpeakerCollectionViewCell.self, forCellWithReuseIdentifier: SpeakerCellIdentifier)
-                collectionView?.frame = CGRectMake(0, 0, 320, 480)
+                collectionView = UICollectionView(frame:CGRect(), collectionViewLayout: UICollectionViewFlowLayout())
+                collectionView?.register(SpeakerCollectionViewCell.self, forCellWithReuseIdentifier: SpeakerCellIdentifier)
+                collectionView?.frame = CGRect(x: 0, y: 0, width: 320, height: 480)
                 collectionView?.dataSource = sut
             }
 
@@ -45,7 +45,7 @@ class SpeakersCollectionViewDataSourceSpec: QuickSpec {
                 context("when it's the first row") {
                     
                     beforeEach {
-                        cell = sut?.collectionView(collectionView!, cellForItemAtIndexPath:NSIndexPath(forItem:0, inSection:0)) as? SpeakerCollectionViewCell
+                        cell = sut?.collectionView(collectionView!, cellForItemAt: IndexPath(item:0, section:0)) as? SpeakerCollectionViewCell
                     }
                     
                     it("should return a cell with properly configured title") {
@@ -56,7 +56,8 @@ class SpeakersCollectionViewDataSourceSpec: QuickSpec {
                 context("when it's the second row") {
 
                     beforeEach {
-                        cell = sut?.collectionView(collectionView!, cellForItemAtIndexPath:NSIndexPath(forItem:1, inSection:0)) as? SpeakerCollectionViewCell
+                        cell = sut?.collectionView(collectionView!, cellForItemAt: IndexPath(item:1, section:0)) as? SpeakerCollectionViewCell
+                        
                     }
 
                     it("should return a cell with properly configured title") {

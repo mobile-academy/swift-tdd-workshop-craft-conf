@@ -42,14 +42,12 @@
 		510438F61CBE8E7C1F504D27 /* UIRefreshControlFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043F2BE2E9D941A49D7CA8 /* UIRefreshControlFake.swift */; };
 		51043A0C439E7A3453F73B18 /* PhotoStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510437064268061B024AFB34 /* PhotoStreamViewController.swift */; };
 		51043A3EF7C3974F1615271B /* SpeakersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510435EDEF61D28A105D11FC /* SpeakersViewController.swift */; };
-		51043B08EC646440A8F60810 /* ParseAdapterFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043767FCF386A030DE1E73 /* ParseAdapterFake.swift */; };
 		51043B0DF5696D6928B5DFA8 /* StreamItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510434C8892F259FA56BBF60 /* StreamItem.swift */; };
 		51043B845590C3D04E665AFF /* ImagePickerFactoryFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510431934953EA27586429FB /* ImagePickerFactoryFake.swift */; };
 		51043BBCC8A7FA2100EFE659 /* StreamItemUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043C337BBCBCDD780EDE19 /* StreamItemUploader.swift */; };
 		51043C19A4A903FCBA7C795E /* StreamItemUploaderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510439024D3A16644453FBF5 /* StreamItemUploaderSpec.swift */; };
 		51043C751412DCF7028CA6F7 /* PhotoStreamViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043D867CB9F601F3B2D7B0 /* PhotoStreamViewControllerSpec.swift */; };
 		51043CA688E614B0BC04AD63 /* ImageManipulatorFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510434F731548560480F4FB7 /* ImageManipulatorFake.swift */; };
-		51043CB6322AE2490391BE05 /* ParseAdapting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510435D99B8B28F4CD575587 /* ParseAdapting.swift */; };
 		51043CE7B90CD294540DA80E /* AlertActionFactoryFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043D7141B91F0066822119 /* AlertActionFactoryFake.swift */; };
 		51043CFEC026B2EA54D725A9 /* StreamItemUploaderFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043F3546921619F45D7FEE /* StreamItemUploaderFake.swift */; };
 		51043D2FD730B3804D6CD26F /* StreamItemDownloaderFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043AE336433B054928411F /* StreamItemDownloaderFake.swift */; };
@@ -116,13 +114,11 @@
 		510434F731548560480F4FB7 /* ImageManipulatorFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageManipulatorFake.swift; sourceTree = "<group>"; };
 		51043554A6BA672E01979F0C /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		510435951C61E707FA5D3004 /* ItemCreating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCreating.swift; sourceTree = "<group>"; };
-		510435D99B8B28F4CD575587 /* ParseAdapting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAdapting.swift; sourceTree = "<group>"; };
 		510435EDEF61D28A105D11FC /* SpeakersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakersViewController.swift; sourceTree = "<group>"; };
 		51043665E727A35C29AAFA42 /* TestStreamItemCreatorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStreamItemCreatorDelegate.swift; sourceTree = "<group>"; };
 		510436EDD02D0683A1C59A17 /* ViewControllerPresenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerPresenting.swift; sourceTree = "<group>"; };
 		510437064268061B024AFB34 /* PhotoStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStreamViewController.swift; sourceTree = "<group>"; };
 		5104375B7F4D2F27F5B3423A /* AgendaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
-		51043767FCF386A030DE1E73 /* ParseAdapterFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAdapterFake.swift; sourceTree = "<group>"; };
 		510438463E71DDBDF78EC29A /* StreamItemDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemDownloader.swift; sourceTree = "<group>"; };
 		5104385522E2286683C8940F /* StreamItemCreatorFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemCreatorFake.swift; sourceTree = "<group>"; };
 		510439024D3A16644453FBF5 /* StreamItemUploaderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemUploaderSpec.swift; sourceTree = "<group>"; };
@@ -221,7 +217,6 @@
 		510430A69A66EA01DF50363F /* Fakes */ = {
 			isa = PBXGroup;
 			children = (
-				51043767FCF386A030DE1E73 /* ParseAdapterFake.swift */,
 				510430DB72E766E5E4F649BB /* ViewControllerPresenterFake.swift */,
 				510430092BFA19DBD863E0EE /* SourceTypeAvailabilityFake.swift */,
 				51043D7141B91F0066822119 /* AlertActionFactoryFake.swift */,
@@ -310,7 +305,6 @@
 				510432A7D6CB6EADD41BB052 /* AlertActionCreating.swift */,
 				51043B1632D8201C3B8C5CB0 /* ImagePickerCreating.swift */,
 				510432896B09B1525A354AD8 /* ImageManipulating.swift */,
-				510435D99B8B28F4CD575587 /* ParseAdapting.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -516,14 +510,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Mobile Academy";
 				TargetAttributes = {
 					A162F1531BEA992400262528 = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0830;
 					};
 					A162F1671BEA992400262528 = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0830;
 						TestTargetID = A162F1531BEA992400262528;
 					};
 				};
@@ -630,7 +626,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DEA9FBBDA0D24C7C766F85E1 /* [CP] Check Pods Manifest.lock */ = {
@@ -645,7 +641,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E9A5B874BDBA51C57E93724A /* [CP] Copy Pods Resources */ = {
@@ -700,7 +696,6 @@
 				51043D4F7E1A71544A394D05 /* ImageManipulating.swift in Sources */,
 				5104335D5F77F482D00552FE /* PhotoStreamCell.swift in Sources */,
 				510432EF963A2E1DACC4A437 /* PhotoStreamLayout.swift in Sources */,
-				51043CB6322AE2490391BE05 /* ParseAdapting.swift in Sources */,
 				5104378055DE0B4EE1A8F442 /* ItemCreating.swift in Sources */,
 				5104335B26865C71B1AA5B76 /* ItemDownloading.swift in Sources */,
 				5104355ABD50CA7D59B2CE7F /* ItemUploading.swift in Sources */,
@@ -718,7 +713,6 @@
 				B27A9D82F37544CEEAC47248 /* SpeakersViewControllerSpec.swift in Sources */,
 				B27A9435A5125ABF50C02EB4 /* SpeakersCollectionViewDataSourceSpec.swift in Sources */,
 				51043605C18A362FF71BEC8E /* StreamItemDownloaderSpec.swift in Sources */,
-				51043B08EC646440A8F60810 /* ParseAdapterFake.swift in Sources */,
 				51043C19A4A903FCBA7C795E /* StreamItemUploaderSpec.swift in Sources */,
 				5104323CC37CC71D3C4951F5 /* StreamItemTransformerSpec.swift in Sources */,
 				510431E1C6664364B83AB52E /* StreamItemCreatorSpec.swift in Sources */,
@@ -800,8 +794,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -844,8 +840,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -864,6 +862,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -878,6 +877,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.mobile-academy.TDDWorkshop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/${PRODUCT_NAME}/Supporting Files/TDDWorkshop-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -891,6 +891,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.mobile-academy.TDDWorkshop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/${PRODUCT_NAME}/Supporting Files/TDDWorkshop-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -903,6 +904,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.mobile-academy.TDDWorkshopTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TDDWorkshop.app/TDDWorkshop";
 			};
 			name = Debug;
@@ -916,6 +918,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.mobile-academy.TDDWorkshopTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TDDWorkshop.app/TDDWorkshop";
 			};
 			name = Release;

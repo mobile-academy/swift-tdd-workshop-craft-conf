@@ -7,35 +7,35 @@ import UIKit
 
 class SpeakersCollectionViewLayout: UICollectionViewFlowLayout {
 
-    override func prepareLayout() {
+    override func prepare() {
         self.minimumInteritemSpacing = 0
         self.minimumLineSpacing = 0
 
-        super.prepareLayout()
+        super.prepare()
 
-        self.registerClass(SeparatorView.self, forDecorationViewOfKind: "Separator")
+        self.register(SeparatorView.self, forDecorationViewOfKind: "Separator")
     }
 
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        var attributes = super.layoutAttributesForElementsInRect(rect)
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        var attributes = super.layoutAttributesForElements(in: rect)
         if let actualAttributes = attributes {
             let separatorsAttributes = self.separatorAttributesForBaseAttributes(actualAttributes)
-            attributes?.appendContentsOf(separatorsAttributes)
+            attributes?.append(contentsOf: separatorsAttributes)
         }
 
         return attributes
     }
 
-    override func layoutAttributesForDecorationViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        let cellAttributes = self.layoutAttributesForItemAtIndexPath(indexPath)
+    override func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        let cellAttributes = self.layoutAttributesForItem(at: indexPath)
         return self.layoutAttributesForDecorationViewOfKind(kind: elementKind, forCellAttributes: cellAttributes)
     }
 
-    private func separatorAttributesForBaseAttributes(attributes: [UICollectionViewLayoutAttributes]) -> [UICollectionViewLayoutAttributes] {
+    fileprivate func separatorAttributesForBaseAttributes(_ attributes: [UICollectionViewLayoutAttributes]) -> [UICollectionViewLayoutAttributes] {
         var separatorsAttributes: [UICollectionViewLayoutAttributes] = []
 
         for layoutAttributes in attributes {
-            let isCellAttribute = layoutAttributes.representedElementCategory == .Cell
+            let isCellAttribute = layoutAttributes.representedElementCategory == .cell
             let isNotLastCellInSection = !self.isIndexPathLastInSection(indexPath: layoutAttributes.indexPath)
             if (isCellAttribute && isNotLastCellInSection) {
                 let separatorAttributes = self.layoutAttributesForDecorationViewOfKind(kind: "Separator", forCellAttributes:layoutAttributes)
@@ -45,17 +45,17 @@ class SpeakersCollectionViewLayout: UICollectionViewFlowLayout {
         return separatorsAttributes
     }
 
-    private func layoutAttributesForDecorationViewOfKind(kind kind: String, forCellAttributes cellAttributes: UICollectionViewLayoutAttributes?) -> UICollectionViewLayoutAttributes {
+    fileprivate func layoutAttributesForDecorationViewOfKind(kind: String, forCellAttributes cellAttributes: UICollectionViewLayoutAttributes?) -> UICollectionViewLayoutAttributes {
         let indexPath = cellAttributes?.indexPath
 
-        let decorationAttributes = UICollectionViewLayoutAttributes(forDecorationViewOfKind: "Separator", withIndexPath: indexPath!)
-        decorationAttributes.bounds = CGRectMake(0, 0, CGRectGetWidth(self.collectionView!.bounds), 1 / UIScreen.mainScreen().scale)
-        decorationAttributes.center = CGPointMake(CGRectGetMidX(self.collectionView!.bounds), CGRectGetMaxY(cellAttributes!.frame))
+        let decorationAttributes = UICollectionViewLayoutAttributes(forDecorationViewOfKind: "Separator", with: indexPath!)
+        decorationAttributes.bounds = CGRect(x: 0, y: 0, width: self.collectionView!.bounds.width, height: 1 / UIScreen.main.scale)
+        decorationAttributes.center = CGPoint(x: self.collectionView!.bounds.midX, y: cellAttributes!.frame.maxY)
         return decorationAttributes
     }
 
-    private func isIndexPathLastInSection(indexPath indexPath: NSIndexPath) -> Bool {
-        let index = self.collectionView!.numberOfItemsInSection(indexPath.section)
+    fileprivate func isIndexPathLastInSection(indexPath: IndexPath) -> Bool {
+        let index = self.collectionView!.numberOfItems(inSection: indexPath.section)
         return indexPath.row == index
     }
 }

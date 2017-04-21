@@ -6,9 +6,8 @@ inhibit_all_warnings!
 use_frameworks!
 
 target 'TDDWorkshop' do
-	pod 'Parse'
-	pod 'Eureka', '~> 1.0'
-	pod 'UIImage-Resize', '~> 1.0'
+	pod 'Eureka', '~> 3.0'
+	pod 'UIImage-Resize'
 
 	target 'TDDWorkshopTests' do
 		inherit! :search_paths

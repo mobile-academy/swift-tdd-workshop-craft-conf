@@ -22,20 +22,20 @@ class SpeakersViewController: UICollectionViewController {
         self.dataSource = SpeakersCollectionViewDataSource(speakers: self.defaultSpeakers())
     }
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
     //MARK: Init Helpers
 
     func defaultSpeakers() -> [Speaker] {
-        let resourcePath = NSBundle.mainBundle().pathForResource("speakers", ofType: "JSON")!
-        let data = NSData(contentsOfFile: resourcePath)!
+        let resourcePath = Bundle.main.path(forResource: "speakers", ofType: "JSON")!
+        let data = try! Data(contentsOf: URL(fileURLWithPath: resourcePath))
 
         var speakersArray: [Speaker] = []
 
         do {
-            let unparsedSpeakers = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? [[String : String]]
+            let unparsedSpeakers = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [[String : String]]
             for speakerDictionary in unparsedSpeakers! {
 
                 let speakerImageName = speakerDictionary["image"]
@@ -63,14 +63,14 @@ class SpeakersViewController: UICollectionViewController {
 
         self.collectionView?.alwaysBounceVertical = true
         self.collectionView?.dataSource = self.dataSource
-        self.collectionView?.registerClass(SpeakerCollectionViewCell.self, forCellWithReuseIdentifier:SpeakerCellIdentifier)
+        self.collectionView?.register(SpeakerCollectionViewCell.self, forCellWithReuseIdentifier:SpeakerCellIdentifier)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
         let layout: UICollectionViewFlowLayout = self.collectionView!.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSizeMake(CGRectGetWidth(self.view.bounds), 80)
+        layout.itemSize = CGSize(width: self.view.bounds.width, height: 80)
     }
 }
 

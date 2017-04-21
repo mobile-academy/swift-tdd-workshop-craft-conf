@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol SourceTypeAvailability {
     func availableSources() -> [UIImagePickerControllerSourceType]
@@ -14,11 +15,11 @@ class DefaultSourceTypeProvider: SourceTypeAvailability {
 
     func availableSources() -> [UIImagePickerControllerSourceType] {
         var availableTypes = [UIImagePickerControllerSourceType]()
-        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
-            availableTypes.append(.PhotoLibrary)
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            availableTypes.append(.photoLibrary)
         }
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            availableTypes.append(.Camera)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            availableTypes.append(.camera)
         }
         return availableTypes
     }

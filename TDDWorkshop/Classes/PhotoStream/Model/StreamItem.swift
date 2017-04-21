@@ -7,11 +7,11 @@ import UIKit
 
 class StreamItem {
     var title: String
-    var imageData: NSData
+    var imageData: Data
 
     static let entityName = "StreamItem"
 
-    init(title: String, imageData: NSData) {
+    init(title: String, imageData: Data) {
         self.title = title
         self.imageData = imageData
     }

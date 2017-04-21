@@ -13,21 +13,21 @@ class ImageManipulatorFake: ImageManipulating {
     var capturedImageToScale: UIImage?
     var capturedImageToDataConversion: UIImage?
 
-    var fakeDataFromImage: NSData = NSData()
+    var fakeDataFromImage: Data = Data()
     var fakeImageFromData: UIImage = UIImage()
     var fakeScaledImage: UIImage = UIImage()
 
-    func scaleImage(image: UIImage, maxDimension: Int) -> UIImage {
+    func scaleImage(_ image: UIImage, maxDimension: Int) -> UIImage {
         capturedImageToScale = image
         return fakeScaledImage
     }
 
-    func dataFromImage(image: UIImage, quality: Float) -> NSData {
+    func dataFromImage(_ image: UIImage, quality: Float) -> Data {
         capturedImageToDataConversion = image
         return fakeDataFromImage
     }
 
-    func imageFromData(data: NSData) -> UIImage {
+    func imageFromData(_ data: Data) -> UIImage {
         return fakeImageFromData
     }
 
