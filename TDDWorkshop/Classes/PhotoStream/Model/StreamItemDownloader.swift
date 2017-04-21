@@ -6,18 +6,13 @@ import Foundation
 
 class StreamItemDownloader: ItemDownloading {
 
-
-    let parseAdapter: ParseAdapting
+    let backendAdapter: BackendAdapting
     var transformer = StreamItemTransformer()
 
-    // MARK: Object Life Cycle
-
-    init(parseAdapter: ParseAdapting) {
-        self.parseAdapter = parseAdapter
+    init(backendAdapter: BackendAdapting) {
+        self.backendAdapter = backendAdapter
     }
 
-    // MARK: ItemDownloading
-    
     func downloadItems(_ completion: @escaping ([StreamItem]?, Error?) -> ()) {
         //TODO fix me using Firebase!
         

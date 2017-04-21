@@ -4,15 +4,11 @@
 
 import UIKit
 
-class DefaultParseAdapter: ParseAdapting { //TODO this is temporary
-    
-}
-
 class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegate {
 
     // MARK: Properties
 
-    var parseAdapter: ParseAdapting
+    var backendAdapter: BackendAdapting
     var downloader: ItemDownloading
     var creator: ItemCreating
     var uploader: ItemUploading
@@ -26,13 +22,13 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
     // MARK: Object Life Cycle
 
     required init?(coder: NSCoder) {
-        parseAdapter = DefaultParseAdapter()
+        backendAdapter = FirebaseAdapter()
         presenter = DefaultViewControllerPresenter()
         imageManipulator = DefaultImageManipulator()
         refreshControl = UIRefreshControl()
-        downloader = StreamItemDownloader(parseAdapter: parseAdapter)
+        downloader = StreamItemDownloader(backendAdapter: backendAdapter)
         creator = StreamItemCreator(presenter: presenter)
-        uploader = StreamItemUploader(parseAdapter: parseAdapter)
+        uploader = StreamItemUploader(backendAdapter: backendAdapter)
         alertActionFactory = DefaultAlertActionFactory()
 
         super.init(coder: coder)

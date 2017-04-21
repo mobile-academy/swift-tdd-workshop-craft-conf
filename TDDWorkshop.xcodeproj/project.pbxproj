@@ -19,6 +19,7 @@
 		43FA23BF1BF8811900A5AD35 /* SpeakersCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A9F0CC5F26F99BDEC1E9D /* SpeakersCollectionViewLayout.swift */; };
 		51043027EBDFCEFE5D0A73F1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043554A6BA672E01979F0C /* Colors.swift */; };
 		5104307313CB15930541CF03 /* StreamItemCreatorFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5104385522E2286683C8940F /* StreamItemCreatorFake.swift */; };
+		510431428431FB93046B98C2 /* BackendObjectTransformable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043074101BA07245A4DDA0 /* BackendObjectTransformable.swift */; };
 		51043170B138F85CA2F8AABF /* StreamItemCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510433D1B42097AB77025094 /* StreamItemCreator.swift */; };
 		510431E1C6664364B83AB52E /* StreamItemCreatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510439BC04764BB07E409C37 /* StreamItemCreatorSpec.swift */; };
 		5104323CC37CC71D3C4951F5 /* StreamItemTransformerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510434BBBC65EA473F7F8CAB /* StreamItemTransformerSpec.swift */; };
@@ -27,6 +28,7 @@
 		5104335B26865C71B1AA5B76 /* ItemDownloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510439CF90DDE012C1F39C5B /* ItemDownloading.swift */; };
 		5104335D5F77F482D00552FE /* PhotoStreamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043E2525F90B539767A93B /* PhotoStreamCell.swift */; };
 		510433D7B66CAEC82FEA523F /* ViewControllerPresenterFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510430DB72E766E5E4F649BB /* ViewControllerPresenterFake.swift */; };
+		51043451941BC4E221E5880F /* BackendAdapting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043427A06AFA64FE903903 /* BackendAdapting.swift */; };
 		5104355ABD50CA7D59B2CE7F /* ItemUploading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510434B91A387520BFA7DAE1 /* ItemUploading.swift */; };
 		51043605C18A362FF71BEC8E /* StreamItemDownloaderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043992847AFBB2B320921D /* StreamItemDownloaderSpec.swift */; };
 		51043651C963EA17BAF5797A /* UICollectionViewFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510431356EF3B1546FF3BC5B /* UICollectionViewFake.swift */; };
@@ -34,6 +36,7 @@
 		51043771E48EF9925E8EF8AD /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5104375B7F4D2F27F5B3423A /* AgendaViewController.swift */; };
 		5104378055DE0B4EE1A8F442 /* ItemCreating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510435951C61E707FA5D3004 /* ItemCreating.swift */; };
 		510437DA293B9850CB5ADFEA /* StreamItemViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510430359B6D6EB27730607D /* StreamItemViewControllerSpec.swift */; };
+		5104388C43E478972E4AB7B3 /* FirebaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5104318D5B894252D0E81795 /* FirebaseAdapter.swift */; };
 		5104389B3A339A2B861CAFEA /* StreamItemDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510438463E71DDBDF78EC29A /* StreamItemDownloader.swift */; };
 		510438B5A55475B2E0049DB8 /* MediaResourceTypeAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510439B03F6E57C8076717EF /* MediaResourceTypeAvailability.swift */; };
 		510438EB7A7B1374F5613A83 /* TestStreamItemCreatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043665E727A35C29AAFA42 /* TestStreamItemCreatorDelegate.swift */; };
@@ -98,14 +101,17 @@
 		43C1FF421D1550E000C50CF5 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		510430092BFA19DBD863E0EE /* SourceTypeAvailabilityFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceTypeAvailabilityFake.swift; sourceTree = "<group>"; };
 		510430359B6D6EB27730607D /* StreamItemViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemViewControllerSpec.swift; sourceTree = "<group>"; };
+		51043074101BA07245A4DDA0 /* BackendObjectTransformable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendObjectTransformable.swift; sourceTree = "<group>"; };
 		510430AFBBDF3557A5D8AF14 /* PollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollViewController.swift; sourceTree = "<group>"; };
 		510430DB72E766E5E4F649BB /* ViewControllerPresenterFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerPresenterFake.swift; sourceTree = "<group>"; };
 		510431356EF3B1546FF3BC5B /* UICollectionViewFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewFake.swift; sourceTree = "<group>"; };
+		5104318D5B894252D0E81795 /* FirebaseAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAdapter.swift; sourceTree = "<group>"; };
 		510431934953EA27586429FB /* ImagePickerFactoryFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerFactoryFake.swift; sourceTree = "<group>"; };
 		5104322AA5C6C30D4B13FE90 /* StreamItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemViewController.swift; sourceTree = "<group>"; };
 		510432896B09B1525A354AD8 /* ImageManipulating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageManipulating.swift; sourceTree = "<group>"; };
 		510432A7D6CB6EADD41BB052 /* AlertActionCreating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertActionCreating.swift; sourceTree = "<group>"; };
 		510433D1B42097AB77025094 /* StreamItemCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemCreator.swift; sourceTree = "<group>"; };
+		51043427A06AFA64FE903903 /* BackendAdapting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendAdapting.swift; sourceTree = "<group>"; };
 		510434B91A387520BFA7DAE1 /* ItemUploading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemUploading.swift; sourceTree = "<group>"; };
 		510434BBBC65EA473F7F8CAB /* StreamItemTransformerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemTransformerSpec.swift; sourceTree = "<group>"; };
 		510434C8892F259FA56BBF60 /* StreamItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItem.swift; sourceTree = "<group>"; };
@@ -205,6 +211,7 @@
 				510433A7A8EEDF416734678C /* Speakers */,
 				51043E96D27B210A13FF45AE /* PhotoStream */,
 				B27A9E63F868EFA7E3B1992D /* AppDelegate.swift */,
+				51043EA9BA07E5CD1BA16D3C /* Backend */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -323,6 +330,16 @@
 				510430359B6D6EB27730607D /* StreamItemViewControllerSpec.swift */,
 			);
 			path = PhotoStream;
+			sourceTree = "<group>";
+		};
+		51043EA9BA07E5CD1BA16D3C /* Backend */ = {
+			isa = PBXGroup;
+			children = (
+				51043427A06AFA64FE903903 /* BackendAdapting.swift */,
+				5104318D5B894252D0E81795 /* FirebaseAdapter.swift */,
+				51043074101BA07245A4DDA0 /* BackendObjectTransformable.swift */,
+			);
+			path = Backend;
 			sourceTree = "<group>";
 		};
 		A162F14B1BEA992400262528 = {
@@ -686,6 +703,9 @@
 				51043F20539F46ABAE5CA019 /* StreamItemViewController.swift in Sources */,
 				1EDB8BD9E433436CEBF83EAE /* AgendaItem.swift in Sources */,
 				1EDB8E6D471D2514A3B408C7 /* AgendaProvider.swift in Sources */,
+				51043451941BC4E221E5880F /* BackendAdapting.swift in Sources */,
+				5104388C43E478972E4AB7B3 /* FirebaseAdapter.swift in Sources */,
+				510431428431FB93046B98C2 /* BackendObjectTransformable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
