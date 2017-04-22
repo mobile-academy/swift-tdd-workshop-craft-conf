@@ -16,8 +16,8 @@ class StreamItemUploader: ItemUploading {
     }
 
     func uploadItem(_ streamItem: StreamItem, completion: @escaping (Bool, Error?) -> ()) {
-        //TODO fix me using Firebase!
-        //        let parseObject = transformer.parseObjectFromStreamItem(streamItem)
-        //        parseAdapter.uploadObject(parseObject, completion: completion)
+        backendAdapter.write(streamItem)
+        //TODO listen for updates
+        completion(true, nil)
     }
 }

@@ -14,23 +14,13 @@ class StreamItemDownloader: ItemDownloading {
     }
 
     func downloadItems(_ completion: @escaping ([StreamItem]?, Error?) -> ()) {
-        //TODO fix me using Firebase!
-        
-        //        let query = PFQuery(className:StreamItem.entityName)
-        //
-        //        parseAdapter.executeQuery(query) {[weak self] objects, error in
-        //            guard error == nil,
-        //            let parseObjects = objects else  {
-        //                completion(nil, error)
-        //                return
-        //            }
-        //            var streamItems = [StreamItem]()
-        //            for object in parseObjects {
-        //                if let streamItem = self?.transformer.streamItemFromParseObject(object) {
-        //                    streamItems.append(streamItem)
-        //                }
-        //            }
-        //            completion(streamItems, nil)
-        //        }
+        backendAdapter.readObjects(ofType: StreamItem.self) { result in
+            switch result {
+            case .success(let objects):
+                completion(objects, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
     }
 }

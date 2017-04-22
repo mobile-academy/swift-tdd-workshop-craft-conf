@@ -4,7 +4,7 @@
 
 import UIKit
 
-class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegate {
+class PhotoStreamViewController: UICollectionViewController {
 
     // MARK: Properties
 
@@ -52,9 +52,9 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoStreamCell", for: indexPath)
-        if let photoCell = cell as? PhotoStreamCell {
-            let streamItem = streamItems[indexPath.row]
-            photoCell.imageView.image = imageManipulator.imageFromData(streamItem.imageData)
+        let streamItem = streamItems[indexPath.row]
+        if let photoCell = cell as? PhotoStreamCell, let data = streamItem.imageData {
+            photoCell.imageView.image = imageManipulator.imageFromData(data)
         }
         return cell
     }
@@ -71,17 +71,16 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let itemViewController = segue.destination as? StreamItemViewController,
-        let cell = sender as? UICollectionViewCell,
-        let indexPath = collectionView?.indexPath(for: cell) {
+           let cell = sender as? UICollectionViewCell,
+           let indexPath = collectionView?.indexPath(for: cell) {
             itemViewController.streamItem = streamItems[indexPath.item]
         }
     }
+}
 
-    // MARK: ItemCreatingDelegate
-
+extension PhotoStreamViewController: ItemCreatingDelegate {
     func creator(_ creator: ItemCreating, didCreateItem item: StreamItem) {
-        uploader.uploadItem(item) {
-            [weak self] success, error in
+        uploader.uploadItem(item) { [weak self] success, error in
             if success == false {
                 self?.presentErrorAlertWithMessage("Failed to upload stream item!")
             } else {
@@ -95,13 +94,14 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
     func creator(_ creator: ItemCreating, failedWithError: Error) {
         presentErrorAlertWithMessage("Failed to create stream item!")
     }
+}
 
-    // MARK: Private methods
-
+extension PhotoStreamViewController {
     fileprivate func presentErrorAlertWithMessage(_ message: String) {
         let errorAlert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         errorAlert.addAction(alertActionFactory.createActionWithTitle("Cancel", style: .cancel) {
-            action in })
+            action in
+        })
         presenter.presentViewController(errorAlert)
     }
 
@@ -112,8 +112,7 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
     }
 
     fileprivate func downloadStreamItems() {
-        downloader.downloadItems {
-            [weak self] items, error in
+        downloader.downloadItems { [weak self] items, error in
             self?.refreshControl.endRefreshing()
             if error != nil || items == nil {
                 self?.presentErrorAlertWithMessage("Failed to download stream items!")
