@@ -62,7 +62,7 @@ class PollViewController: FormViewController {
     }
 
     func sendPoll() {
-        let poll = self.pollBuilder.poll()
+        let poll = self.pollBuilder.create()
         PollManager.sharedInstance.sendPoll(poll) {
             [weak self] success in
             if success {
