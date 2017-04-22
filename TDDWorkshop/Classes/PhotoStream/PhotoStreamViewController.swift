@@ -1,5 +1,5 @@
 //
-//  Copyright © 2015 Mobile Academy. All rights reserved.
+//  Copyright © 2017 Mobile Academy. All rights reserved.
 //
 
 import UIKit
@@ -10,7 +10,7 @@ class DefaultParseAdapter: ParseAdapting { //TODO this is temporary
 
 class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegate {
 
-    //MARK: Properties
+    // MARK: Properties
 
     var parseAdapter: ParseAdapting
     var downloader: ItemDownloading
@@ -23,7 +23,7 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
 
     var streamItems = [StreamItem]()
 
-    //MARK: Object Life Cycle
+    // MARK: Object Life Cycle
 
     required init?(coder: NSCoder) {
         parseAdapter = DefaultParseAdapter()
@@ -40,7 +40,7 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
         creator.delegate = self
     }
 
-    //MARK: View Life Cycle
+    // MARK: View Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
         downloadStreamItems()
     }
 
-    //MARK: UICollectionViewDataSource
+    // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return streamItems.count
@@ -63,7 +63,7 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
         return cell
     }
 
-    //MARK: Actions
+    // MARK: Actions
 
     @IBAction func didPressAddItemBarButtonItem(_ sender: UIBarButtonItem!) {
         creator.createStreamItem()
@@ -81,7 +81,7 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
         }
     }
 
-    //MARK: ItemCreatingDelegate
+    // MARK: ItemCreatingDelegate
 
     func creator(_ creator: ItemCreating, didCreateItem item: StreamItem) {
         uploader.uploadItem(item) {
@@ -100,7 +100,7 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
         presentErrorAlertWithMessage("Failed to create stream item!")
     }
 
-    //MARK: Private methods
+    // MARK: Private methods
 
     fileprivate func presentErrorAlertWithMessage(_ message: String) {
         let errorAlert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)

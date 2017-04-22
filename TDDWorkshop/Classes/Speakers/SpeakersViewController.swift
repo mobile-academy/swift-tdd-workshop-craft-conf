@@ -1,12 +1,12 @@
 //
-//  Copyright © 2015 Mobile Academy. All rights reserved.
+//  Copyright © 2017 Mobile Academy. All rights reserved.
 //
 
 import UIKit
 
 class SpeakersViewController: UICollectionViewController {
 
-    //MARK: Properties
+    // MARK: Properties
 
     var dataSource: SpeakersCollectionViewDataSource? {
         didSet {
@@ -14,7 +14,7 @@ class SpeakersViewController: UICollectionViewController {
         }
     }
 
-    //MARK: Initializers
+    // MARK: Initializers
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -26,7 +26,7 @@ class SpeakersViewController: UICollectionViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
-    //MARK: Init Helpers
+    // MARK: Init Helpers
 
     func defaultSpeakers() -> [Speaker] {
         let resourcePath = Bundle.main.path(forResource: "speakers", ofType: "JSON")!
@@ -56,7 +56,7 @@ class SpeakersViewController: UICollectionViewController {
         return speakersArray
     }
 
-    //MARK: UIViewController
+    // MARK: UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()

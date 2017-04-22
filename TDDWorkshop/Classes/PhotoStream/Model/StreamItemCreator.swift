@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2015 Mobile Academy. All rights reserved.
+// Copyright (c) 2017 Mobile Academy. All rights reserved.
 //
 
 import Foundation
@@ -7,7 +7,7 @@ import UIKit
 
 class StreamItemCreator: NSObject, ItemCreating, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    //MARK: Properties
+    // MARK: Properties
 
     weak var delegate: ItemCreatingDelegate?
 
@@ -17,7 +17,7 @@ class StreamItemCreator: NSObject, ItemCreating, UIImagePickerControllerDelegate
     var pickerFactory: ImagePickerCreating
     var imageManipulator: ImageManipulating
 
-    //MARK: Object Life Cycle
+    // MARK: Object Life Cycle
 
     init(presenter: ViewControllerPresenting) {
         controllerPresenter = presenter
@@ -27,7 +27,7 @@ class StreamItemCreator: NSObject, ItemCreating, UIImagePickerControllerDelegate
         imageManipulator = DefaultImageManipulator()
     }
 
-    //MARK: ItemCreating
+    // MARK: ItemCreating
 
     func createStreamItem() {
         //TODO: Task 2
@@ -38,7 +38,7 @@ class StreamItemCreator: NSObject, ItemCreating, UIImagePickerControllerDelegate
         presentSourcesActionSheet()
     }
 
-    //MARK: UIImagePickerControllerDelegate
+    // MARK: UIImagePickerControllerDelegate
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String:Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -63,7 +63,7 @@ class StreamItemCreator: NSObject, ItemCreating, UIImagePickerControllerDelegate
         controllerPresenter.dismissViewController(picker)
     }
 
-    //MARK: Private methods
+    // MARK: Private methods
 
     fileprivate func presentSourcesActionSheet() {
         let alertController = UIAlertController(title: "Add new Item to the stream", message: nil, preferredStyle: .actionSheet)

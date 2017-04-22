@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2015 Mobile Academy. All rights reserved.
+// Copyright (c) 2017 Mobile Academy. All rights reserved.
 //
 
 import Foundation
@@ -11,7 +11,7 @@ protocol SourceTypeAvailability {
 
 class DefaultSourceTypeProvider: SourceTypeAvailability {
 
-    //MARK: Public methods
+    // MARK: Public methods
 
     func availableSources() -> [UIImagePickerControllerSourceType] {
         var availableTypes = [UIImagePickerControllerSourceType]()

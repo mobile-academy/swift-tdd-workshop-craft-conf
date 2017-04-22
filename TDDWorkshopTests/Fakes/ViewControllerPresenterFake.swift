@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2015 Mobile Academy. All rights reserved.
+// Copyright (c) 2017 Mobile Academy. All rights reserved.
 //
 
 import Foundation
@@ -13,7 +13,7 @@ class ViewControllerPresenterFake: ViewControllerPresenting {
     var capturedPresentedViewController: UIViewController?
     var capturedDismissedViewController: UIViewController?
 
-    //MARK: ViewControllerPresenter
+    // MARK: ViewControllerPresenter
 
     weak var viewController: UIViewController?
 

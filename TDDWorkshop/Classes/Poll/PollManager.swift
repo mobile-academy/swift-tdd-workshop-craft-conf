@@ -3,7 +3,7 @@
 //  TDDWorkshop
 //
 //  Created by Maciej Oczko on 11.11.2015.
-//  Copyright © 2015 Mobile Academy. All rights reserved.
+//  Copyright © 2017 Mobile Academy. All rights reserved.
 //
 
 import Foundation

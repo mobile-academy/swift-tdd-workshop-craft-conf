@@ -1,11 +1,11 @@
-# TDD Workshop in Swift 2
+# TDD Workshop in Swift 3
 
 ## About
 
-Seed repo for Mobile Academy TDD workshop written in Swift 2.2
+Seed repo for Mobile Academy TDD workshop written in Swift 3
 
 Project code style description [here](Code-Style.md).
 
 ## License
 
-Copyright © 2016 Mobile Academy. All rights reserved.
+Copyright © 2017 Mobile Academy. All rights reserved.

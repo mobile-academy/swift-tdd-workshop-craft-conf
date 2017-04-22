@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2015 Mobile Academy. All rights reserved.
+// Copyright (c) 2017 Mobile Academy. All rights reserved.
 //
 
 import Foundation
@@ -10,13 +10,13 @@ class StreamItemDownloader: ItemDownloading {
     let parseAdapter: ParseAdapting
     var transformer = StreamItemTransformer()
 
-    //MARK: Object Life Cycle
+    // MARK: Object Life Cycle
 
     init(parseAdapter: ParseAdapting) {
         self.parseAdapter = parseAdapter
     }
 
-    //MARK: ItemDownloading
+    // MARK: ItemDownloading
     
     func downloadItems(_ completion: @escaping ([StreamItem]?, Error?) -> ()) {
         //TODO fix me using Firebase!

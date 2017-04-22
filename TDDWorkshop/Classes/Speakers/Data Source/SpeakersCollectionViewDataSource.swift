@@ -1,5 +1,5 @@
 //
-// Copyright (©) 2015 Mobile Academy. All rights reserved.
+// Copyright (©) 2017 Mobile Academy. All rights reserved.
 //
 
 import Foundation
@@ -7,17 +7,17 @@ import UIKit
 
 @objc class SpeakersCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
-    //MARK: Properties
+    // MARK: Properties
 
     let speakers: [Speaker]
 
-    //MARK: Initializers
+    // MARK: Initializers
 
     init(speakers: [Speaker]) {
         self.speakers = speakers
     }
 
-    //MARK: UICollection View Data Source
+    // MARK: UICollection View Data Source
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.speakers.count
