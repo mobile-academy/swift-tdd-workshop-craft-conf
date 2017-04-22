@@ -19,10 +19,10 @@
 		43FA23BF1BF8811900A5AD35 /* SpeakersCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A9F0CC5F26F99BDEC1E9D /* SpeakersCollectionViewLayout.swift */; };
 		51043027EBDFCEFE5D0A73F1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043554A6BA672E01979F0C /* Colors.swift */; };
 		5104307313CB15930541CF03 /* StreamItemCreatorFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5104385522E2286683C8940F /* StreamItemCreatorFake.swift */; };
+		5104308551A8B72E37FBD4CE /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043680BE9035B09AB445B9 /* DataCache.swift */; };
 		510431428431FB93046B98C2 /* BackendObjectTransformable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043074101BA07245A4DDA0 /* BackendObjectTransformable.swift */; };
 		51043170B138F85CA2F8AABF /* StreamItemCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510433D1B42097AB77025094 /* StreamItemCreator.swift */; };
 		510431E1C6664364B83AB52E /* StreamItemCreatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510439BC04764BB07E409C37 /* StreamItemCreatorSpec.swift */; };
-		5104323CC37CC71D3C4951F5 /* StreamItemTransformerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510434BBBC65EA473F7F8CAB /* StreamItemTransformerSpec.swift */; };
 		51043256D33EC8DD17038E3E /* AlertActionCreating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510432A7D6CB6EADD41BB052 /* AlertActionCreating.swift */; };
 		510432EF963A2E1DACC4A437 /* PhotoStreamLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043CFCB812DE53D6F3724E /* PhotoStreamLayout.swift */; };
 		5104335B26865C71B1AA5B76 /* ItemDownloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510439CF90DDE012C1F39C5B /* ItemDownloading.swift */; };
@@ -59,7 +59,6 @@
 		51043F34360C2BBE216A27E2 /* SourceTypeAvailabilityFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510430092BFA19DBD863E0EE /* SourceTypeAvailabilityFake.swift */; };
 		51043FA161D6333E1A439928 /* ImagePickerCreating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043B1632D8201C3B8C5CB0 /* ImagePickerCreating.swift */; };
 		51043FCBAE02051B24749F47 /* ViewControllerPresenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510436EDD02D0683A1C59A17 /* ViewControllerPresenting.swift */; };
-		51043FF50D487EE58AB2ECC9 /* StreamItemTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043DF90B2B0152DF6FF46B /* StreamItemTransformer.swift */; };
 		7D1511543CD2EEE010210C67 /* Pods_TDDWorkshopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD3810424F15F2F03E14512 /* Pods_TDDWorkshopTests.framework */; };
 		86F2B4061BFD372D00AACB4C /* AgendaItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2B4051BFD372D00AACB4C /* AgendaItemCell.swift */; };
 		94CE8FE71EAA76C300FC8D70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94CE8FE61EAA76C300FC8D70 /* GoogleService-Info.plist */; };
@@ -115,13 +114,13 @@
 		510433D1B42097AB77025094 /* StreamItemCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemCreator.swift; sourceTree = "<group>"; };
 		51043427A06AFA64FE903903 /* BackendAdapting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendAdapting.swift; sourceTree = "<group>"; };
 		510434B91A387520BFA7DAE1 /* ItemUploading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemUploading.swift; sourceTree = "<group>"; };
-		510434BBBC65EA473F7F8CAB /* StreamItemTransformerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemTransformerSpec.swift; sourceTree = "<group>"; };
 		510434C8892F259FA56BBF60 /* StreamItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItem.swift; sourceTree = "<group>"; };
 		510434F731548560480F4FB7 /* ImageManipulatorFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageManipulatorFake.swift; sourceTree = "<group>"; };
 		51043554A6BA672E01979F0C /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		510435951C61E707FA5D3004 /* ItemCreating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCreating.swift; sourceTree = "<group>"; };
 		510435EDEF61D28A105D11FC /* SpeakersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakersViewController.swift; sourceTree = "<group>"; };
 		51043665E727A35C29AAFA42 /* TestStreamItemCreatorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStreamItemCreatorDelegate.swift; sourceTree = "<group>"; };
+		51043680BE9035B09AB445B9 /* DataCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCache.swift; sourceTree = "<group>"; };
 		510436EDD02D0683A1C59A17 /* ViewControllerPresenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerPresenting.swift; sourceTree = "<group>"; };
 		51043701AC6689A07FDA39BA /* FirebaseDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataStorage.swift; sourceTree = "<group>"; };
 		510437064268061B024AFB34 /* PhotoStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStreamViewController.swift; sourceTree = "<group>"; };
@@ -140,7 +139,6 @@
 		51043CFCB812DE53D6F3724E /* PhotoStreamLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStreamLayout.swift; sourceTree = "<group>"; };
 		51043D7141B91F0066822119 /* AlertActionFactoryFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertActionFactoryFake.swift; sourceTree = "<group>"; };
 		51043D867CB9F601F3B2D7B0 /* PhotoStreamViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStreamViewControllerSpec.swift; sourceTree = "<group>"; };
-		51043DF90B2B0152DF6FF46B /* StreamItemTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemTransformer.swift; sourceTree = "<group>"; };
 		51043E2525F90B539767A93B /* PhotoStreamCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStreamCell.swift; sourceTree = "<group>"; };
 		51043F2BE2E9D941A49D7CA8 /* UIRefreshControlFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRefreshControlFake.swift; sourceTree = "<group>"; };
 		51043F3546921619F45D7FEE /* StreamItemUploaderFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemUploaderFake.swift; sourceTree = "<group>"; };
@@ -301,6 +299,7 @@
 				510432A7D6CB6EADD41BB052 /* AlertActionCreating.swift */,
 				51043B1632D8201C3B8C5CB0 /* ImagePickerCreating.swift */,
 				510432896B09B1525A354AD8 /* ImageManipulating.swift */,
+				51043680BE9035B09AB445B9 /* DataCache.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -313,9 +312,7 @@
 				51043C337BBCBCDD780EDE19 /* StreamItemUploader.swift */,
 				510433D1B42097AB77025094 /* StreamItemCreator.swift */,
 				51043992847AFBB2B320921D /* StreamItemDownloaderSpec.swift */,
-				51043DF90B2B0152DF6FF46B /* StreamItemTransformer.swift */,
 				510439024D3A16644453FBF5 /* StreamItemUploaderSpec.swift */,
-				510434BBBC65EA473F7F8CAB /* StreamItemTransformerSpec.swift */,
 				510439BC04764BB07E409C37 /* StreamItemCreatorSpec.swift */,
 				51043A06FC685D90DCD84F99 /* Protocols */,
 			);
@@ -693,7 +690,6 @@
 				B27A9D49C4908E6CD130E12C /* SpeakerCollectionViewCell.swift in Sources */,
 				43FA23BF1BF8811900A5AD35 /* SpeakersCollectionViewLayout.swift in Sources */,
 				B27A9FC130EC0A542BD236B0 /* SeparatorView.swift in Sources */,
-				51043FF50D487EE58AB2ECC9 /* StreamItemTransformer.swift in Sources */,
 				51043FCBAE02051B24749F47 /* ViewControllerPresenting.swift in Sources */,
 				43C1FF431D1550E000C50CF5 /* MobileAcademyStyleSheet.swift in Sources */,
 				510438B5A55475B2E0049DB8 /* MediaResourceTypeAvailability.swift in Sources */,
@@ -714,6 +710,7 @@
 				510431428431FB93046B98C2 /* BackendObjectTransformable.swift in Sources */,
 				5104370AEB89944C68C40B21 /* RemoteDataStoring.swift in Sources */,
 				510436B0FD92354037610167 /* FirebaseDataStorage.swift in Sources */,
+				5104308551A8B72E37FBD4CE /* DataCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,7 +723,6 @@
 				B27A9435A5125ABF50C02EB4 /* SpeakersCollectionViewDataSourceSpec.swift in Sources */,
 				51043605C18A362FF71BEC8E /* StreamItemDownloaderSpec.swift in Sources */,
 				51043C19A4A903FCBA7C795E /* StreamItemUploaderSpec.swift in Sources */,
-				5104323CC37CC71D3C4951F5 /* StreamItemTransformerSpec.swift in Sources */,
 				510431E1C6664364B83AB52E /* StreamItemCreatorSpec.swift in Sources */,
 				510433D7B66CAEC82FEA523F /* ViewControllerPresenterFake.swift in Sources */,
 				51043F34360C2BBE216A27E2 /* SourceTypeAvailabilityFake.swift in Sources */,

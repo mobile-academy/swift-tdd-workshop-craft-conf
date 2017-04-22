@@ -4,14 +4,10 @@
 
 import Foundation
 
-protocol ParseAdapting {} //TODO this is temporary
-
 class StreamItemUploader: ItemUploading {
 
     let backendAdapter: BackendAdapting
     let remoteStorage: RemoteDataStoring
-
-    var transformer = StreamItemTransformer()
 
     init (backendAdapter: BackendAdapting, remoteStorage: RemoteDataStoring) {
         self.backendAdapter = backendAdapter

@@ -28,7 +28,7 @@ class PhotoStreamViewController: UICollectionViewController {
         presenter = DefaultViewControllerPresenter()
         imageManipulator = DefaultImageManipulator()
         refreshControl = UIRefreshControl()
-        downloader = StreamItemDownloader(backendAdapter: backendAdapter)
+        downloader = StreamItemDownloader(backendAdapter: backendAdapter, remoteStorage: remoteStorage)
         creator = StreamItemCreator(presenter: presenter)
         uploader = StreamItemUploader(backendAdapter: backendAdapter, remoteStorage: remoteStorage)
         alertActionFactory = DefaultAlertActionFactory()
@@ -55,8 +55,11 @@ class PhotoStreamViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoStreamCell", for: indexPath)
         let streamItem = streamItems[indexPath.row]
-        if let photoCell = cell as? PhotoStreamCell, let data = streamItem.imageData {
+        guard let photoCell = cell as? PhotoStreamCell else { return cell }
+        if let data = streamItem.imageData {
             photoCell.imageView.image = imageManipulator.imageFromData(data)
+        } else {
+            downloadImage(for: photoCell, at: indexPath)
         }
         return cell
     }
@@ -116,11 +119,23 @@ extension PhotoStreamViewController {
     fileprivate func downloadStreamItems() {
         downloader.downloadItems { [weak self] items, error in
             self?.refreshControl.endRefreshing()
-            if error != nil || items == nil {
+            if error != nil {
                 self?.presentErrorAlertWithMessage("Failed to download stream items!")
             } else {
-                self?.streamItems = items!
+                self?.streamItems = items ?? []
                 self?.collectionView?.reloadData()
+            }
+        }
+    }
+
+    fileprivate func downloadImage(for cell: PhotoStreamCell, at indexPath: IndexPath) {
+        let streamItem = streamItems[indexPath.row]
+        downloader.downloadImage(for: streamItem) { [weak self] in
+            if let cellIndexPath = self?.collectionView?.indexPath(for: cell), indexPath != cellIndexPath {
+                return
+            }
+            if let data = streamItem.imageData {
+                cell.imageView.image = self?.imageManipulator.imageFromData(data)
             }
         }
     }

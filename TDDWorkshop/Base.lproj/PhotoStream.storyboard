@@ -1,9 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3jm-JN-bUQ">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3jm-JN-bUQ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Photo Stream-->
@@ -27,13 +32,13 @@
             <objects>
                 <collectionViewController storyboardIdentifier="PhotoStream" title="Photo Stream" id="K2V-uQ-pa6" customClass="PhotoStreamViewController" customModule="TDDWorkshop" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="JQt-lv-8xf">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewLayout key="collectionViewLayout" id="jfd-wo-Ikh" customClass="PhotoStreamLayout" customModule="TDDWorkshop" customModuleProvider="target"/>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="PhotoStreamCell" id="ZPH-Px-pLS" customClass="PhotoStreamCell" customModule="TDDWorkshop" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="100" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
@@ -41,12 +46,11 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhotoStream" translatesAutoresizingMaskIntoConstraints="NO" id="aj0-AW-ggU">
                                             <rect key="frame" x="0.0" y="0.5" width="100" height="100"/>
-                                            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="aj0-AW-ggU" firstAttribute="centerY" secondItem="ZPH-Px-pLS" secondAttribute="centerY" id="ea9-xE-8eL"/>
                                     <constraint firstItem="aj0-AW-ggU" firstAttribute="height" secondItem="ZPH-Px-pLS" secondAttribute="height" id="jbZ-RN-Pfa"/>
@@ -88,20 +92,20 @@
                         <viewControllerLayoutGuide type="bottom" id="QNc-WO-dYj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EwG-jv-gq5">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OBZ-eV-hN5">
-                                <rect key="frame" x="20" y="20" width="39" height="30"/>
+                                <rect key="frame" x="16" y="20" width="39" height="30"/>
                                 <state key="normal" title="Close">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="cancelBarButtonPressed:" destination="lhx-e1-8ze" eventType="touchUpInside" id="tpH-J6-Qw3"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="PhotoStream" translatesAutoresizingMaskIntoConstraints="NO" id="dMK-5e-Bct">
-                                <rect key="frame" x="288" y="290.5" width="24" height="19"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhotoStream" translatesAutoresizingMaskIntoConstraints="NO" id="dMK-5e-Bct">
+                                <rect key="frame" x="175.5" y="324.5" width="24" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="520" id="dmN-2y-FJT"/>
                                 </constraints>
@@ -112,18 +116,20 @@
                                 </variation>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="OBZ-eV-hN5" secondAttribute="leading" id="348-9J-xFz"/>
                             <constraint firstItem="dMK-5e-Bct" firstAttribute="centerY" secondItem="EwG-jv-gq5" secondAttribute="centerY" id="4ll-ZA-6o7"/>
                             <constraint firstItem="dMK-5e-Bct" firstAttribute="centerY" secondItem="EwG-jv-gq5" secondAttribute="centerY" id="8EK-xm-vKJ"/>
                             <constraint firstItem="OBZ-eV-hN5" firstAttribute="top" secondItem="HmY-MH-O6t" secondAttribute="bottom" id="GP3-ha-ddJ"/>
+                            <constraint firstItem="dMK-5e-Bct" firstAttribute="width" relation="lessThanOrEqual" secondItem="EwG-jv-gq5" secondAttribute="width" id="Kaf-eE-RYz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dMK-5e-Bct" secondAttribute="trailing" constant="20" id="MGl-kt-zen"/>
                             <constraint firstItem="dMK-5e-Bct" firstAttribute="width" secondItem="EwG-jv-gq5" secondAttribute="width" id="NnL-0j-i2N"/>
                             <constraint firstItem="dMK-5e-Bct" firstAttribute="centerX" secondItem="EwG-jv-gq5" secondAttribute="centerX" id="WlN-U1-XGS"/>
                             <constraint firstItem="dMK-5e-Bct" firstAttribute="centerX" secondItem="EwG-jv-gq5" secondAttribute="centerX" id="aWg-mp-cZz"/>
                             <constraint firstItem="dMK-5e-Bct" firstAttribute="leading" secondItem="EwG-jv-gq5" secondAttribute="leadingMargin" constant="20" id="dP9-yf-nAa"/>
                             <constraint firstItem="dMK-5e-Bct" firstAttribute="centerY" secondItem="EwG-jv-gq5" secondAttribute="centerY" id="vmc-Be-QyB"/>
+                            <constraint firstItem="dMK-5e-Bct" firstAttribute="height" relation="lessThanOrEqual" secondItem="EwG-jv-gq5" secondAttribute="height" multiplier="0.8" id="wlY-cJ-p5Y"/>
                             <constraint firstItem="dMK-5e-Bct" firstAttribute="centerX" secondItem="EwG-jv-gq5" secondAttribute="centerX" id="xcu-Mw-deE"/>
                         </constraints>
                         <variation key="default">
@@ -144,10 +150,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VF5-t9-7KP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1592" y="-386"/>
+            <point key="canvasLocation" x="1593" y="-411"/>
         </scene>
     </scenes>
     <resources>
-        <image name="PhotoStream" width="24" height="19"/>
+        <image name="PhotoStream" width="24" height="18"/>
     </resources>
 </document>

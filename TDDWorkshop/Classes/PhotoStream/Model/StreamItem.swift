@@ -22,6 +22,7 @@ class StreamItem: BackendObjectTransformable {
     private struct Keys {
         static let title = "title"
         static let timestamp = "timestamp"
+        static let imageURL = "imageURL"
     }
 
     private(set) static var name: String = "StreamItem"
@@ -32,17 +33,18 @@ class StreamItem: BackendObjectTransformable {
               let timestamp = backendObject[Keys.timestamp] as? NSNumber else { return nil }
         let date = Date(timeIntervalSinceReferenceDate: timestamp.doubleValue)
         self.init(title: title, creationDate: date)
+        if let stringURL = backendObject[Keys.imageURL] as? String, let url = URL(string: stringURL) {
+            imageURL = url
+        }
     }
 
     func transformToBackendObject() -> BackendObject {
-        return [Keys.title: title,
-                Keys.timestamp: NSNumber(floatLiteral: creationDate.timeIntervalSinceReferenceDate)]
-    }
-}
-
-extension StreamItem {
-    func image() -> UIImage? {
-        return nil
-//        return UIImage(data: imageData) //TODO fix me
+        var backendObject: BackendObject = [:]
+        backendObject[Keys.title] = title
+        backendObject[Keys.timestamp] = NSNumber(floatLiteral: creationDate.timeIntervalSinceReferenceDate)
+        if let url = imageURL {
+            backendObject[Keys.imageURL] = url.absoluteString
+        }
+        return backendObject
     }
 }
