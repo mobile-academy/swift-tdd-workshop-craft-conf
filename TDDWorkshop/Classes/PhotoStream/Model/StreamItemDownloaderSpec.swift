@@ -26,21 +26,19 @@ class StreamItemDownloaderSpec: QuickSpec {
                 var capturedError: Error?
 
                 beforeEach {
-                    sut.downloadItems {
-                        items, error in
+                    sut.downloadItems { items, error in
                         downloadedItems = items
                         capturedError = error
                     }
                 }
 
                 it("should execute query") {
-                    
-                }
-                it("should execute query to fetch StreamItem") {
+                    expect(backendFake.readObjectsCalled) == true
                 }
 
                 context("when succeeds and completion is called") {
                     beforeEach {
+                        backendFake.simulateSuccess?()
                     }
                     it("should NOT pass error") {
                         expect(capturedError).to(beNil())
@@ -48,16 +46,10 @@ class StreamItemDownloaderSpec: QuickSpec {
                     it("should return stream items") {
                         expect(downloadedItems).notTo(beNil())
                     }
-                    it("should return single stream item") {
-                        expect(downloadedItems!.count) == 1
-                    }
-                    it("should parse correctly title of the item") {
-                        let streamItem = downloadedItems![0]
-                        expect(streamItem.title) == "Foo"
-                    }
                 }
                 context("when fails") {
                     beforeEach {
+                        backendFake.simulateFailure?()
                     }
                     it("should pass an error") {
                         expect(capturedError).notTo(beNil())

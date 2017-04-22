@@ -96,7 +96,7 @@ class PhotoStreamViewControllerSpec: QuickSpec {
                 describe("when pressed") {
                     beforeEach {
                         let action = barButtonItem!.action
-                        sut.performSelector(inBackground: action!, with: barButtonItem!)
+                        sut.perform(action!, with: barButtonItem)
                     }
                     it("should request item creation") {
                         expect(creator.createItemCalled) == true
