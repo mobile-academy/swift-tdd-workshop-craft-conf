@@ -11,11 +11,11 @@ import UIKit
 
 extension UIColor {
     
-    class func barsBackgroundTintColor() -> UIColor {
+    class var barsBackgroundTint: UIColor {
         return UIColor(colorLiteralRed: 66/255, green: 177/255, blue: 211/255, alpha: 1)
     }
     
-    class func textColor() -> UIColor {
+    class var text: UIColor {
         return UIColor(colorLiteralRed: 52/255, green: 52/255, blue: 52/255, alpha: 1)
     }
     

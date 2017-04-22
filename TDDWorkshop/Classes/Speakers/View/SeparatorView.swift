@@ -10,7 +10,7 @@ class SeparatorView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        self.backgroundColor = UIColor.barsBackgroundTintColor()
+        self.backgroundColor = .barsBackgroundTint
     }
 
     required init?(coder aDecoder: NSCoder) {

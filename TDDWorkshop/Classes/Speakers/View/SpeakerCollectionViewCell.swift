@@ -26,7 +26,7 @@ class SpeakerCollectionViewCell : UICollectionViewCell {
         self.contentView.addSubview(self.titleLabel)
         self.contentView.addSubview(self.imageView)
 
-        self.titleLabel.textColor = UIColor.textColor()
+        self.titleLabel.textColor = .text
 
         self.installConstraints()
     }
