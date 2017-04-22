@@ -8,16 +8,12 @@ protocol ParseAdapting {} //TODO this is temporary
 
 class StreamItemUploader: ItemUploading {
 
-    let parseAdapter: ParseAdapting
+    let backendAdapter: BackendAdapting
     var transformer = StreamItemTransformer()
 
-    // MARK: Object Life Cycle
-
-    init (parseAdapter: ParseAdapting) {
-        self.parseAdapter = parseAdapter
+    init (backendAdapter: BackendAdapting) {
+        self.backendAdapter = backendAdapter
     }
-
-    // MARK: ItemUploading
 
     func uploadItem(_ streamItem: StreamItem, completion: @escaping (Bool, Error?) -> ()) {
         //TODO fix me using Firebase!
