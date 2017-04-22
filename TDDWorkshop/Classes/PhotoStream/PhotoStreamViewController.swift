@@ -9,6 +9,7 @@ class PhotoStreamViewController: UICollectionViewController {
     // MARK: Properties
 
     var backendAdapter: BackendAdapting
+    var remoteStorage: RemoteDataStoring
     var downloader: ItemDownloading
     var creator: ItemCreating
     var uploader: ItemUploading
@@ -23,12 +24,13 @@ class PhotoStreamViewController: UICollectionViewController {
 
     required init?(coder: NSCoder) {
         backendAdapter = FirebaseAdapter()
+        remoteStorage = FirebaseDataStorage()
         presenter = DefaultViewControllerPresenter()
         imageManipulator = DefaultImageManipulator()
         refreshControl = UIRefreshControl()
         downloader = StreamItemDownloader(backendAdapter: backendAdapter)
         creator = StreamItemCreator(presenter: presenter)
-        uploader = StreamItemUploader(backendAdapter: backendAdapter)
+        uploader = StreamItemUploader(backendAdapter: backendAdapter, remoteStorage: remoteStorage)
         alertActionFactory = DefaultAlertActionFactory()
 
         super.init(coder: coder)

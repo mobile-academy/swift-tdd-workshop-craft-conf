@@ -33,6 +33,8 @@
 		51043605C18A362FF71BEC8E /* StreamItemDownloaderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043992847AFBB2B320921D /* StreamItemDownloaderSpec.swift */; };
 		51043651C963EA17BAF5797A /* UICollectionViewFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510431356EF3B1546FF3BC5B /* UICollectionViewFake.swift */; };
 		51043677CCD46E1C3EB6E004 /* PollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510430AFBBDF3557A5D8AF14 /* PollViewController.swift */; };
+		510436B0FD92354037610167 /* FirebaseDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043701AC6689A07FDA39BA /* FirebaseDataStorage.swift */; };
+		5104370AEB89944C68C40B21 /* RemoteDataStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5104385113F9B818F18330BA /* RemoteDataStoring.swift */; };
 		51043771E48EF9925E8EF8AD /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5104375B7F4D2F27F5B3423A /* AgendaViewController.swift */; };
 		5104378055DE0B4EE1A8F442 /* ItemCreating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510435951C61E707FA5D3004 /* ItemCreating.swift */; };
 		510437DA293B9850CB5ADFEA /* StreamItemViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510430359B6D6EB27730607D /* StreamItemViewControllerSpec.swift */; };
@@ -121,9 +123,11 @@
 		510435EDEF61D28A105D11FC /* SpeakersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakersViewController.swift; sourceTree = "<group>"; };
 		51043665E727A35C29AAFA42 /* TestStreamItemCreatorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStreamItemCreatorDelegate.swift; sourceTree = "<group>"; };
 		510436EDD02D0683A1C59A17 /* ViewControllerPresenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerPresenting.swift; sourceTree = "<group>"; };
+		51043701AC6689A07FDA39BA /* FirebaseDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataStorage.swift; sourceTree = "<group>"; };
 		510437064268061B024AFB34 /* PhotoStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStreamViewController.swift; sourceTree = "<group>"; };
 		5104375B7F4D2F27F5B3423A /* AgendaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
 		510438463E71DDBDF78EC29A /* StreamItemDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemDownloader.swift; sourceTree = "<group>"; };
+		5104385113F9B818F18330BA /* RemoteDataStoring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteDataStoring.swift; sourceTree = "<group>"; };
 		5104385522E2286683C8940F /* StreamItemCreatorFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemCreatorFake.swift; sourceTree = "<group>"; };
 		510439024D3A16644453FBF5 /* StreamItemUploaderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemUploaderSpec.swift; sourceTree = "<group>"; };
 		51043992847AFBB2B320921D /* StreamItemDownloaderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemDownloaderSpec.swift; sourceTree = "<group>"; };
@@ -338,6 +342,8 @@
 				51043427A06AFA64FE903903 /* BackendAdapting.swift */,
 				5104318D5B894252D0E81795 /* FirebaseAdapter.swift */,
 				51043074101BA07245A4DDA0 /* BackendObjectTransformable.swift */,
+				5104385113F9B818F18330BA /* RemoteDataStoring.swift */,
+				51043701AC6689A07FDA39BA /* FirebaseDataStorage.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -706,6 +712,8 @@
 				51043451941BC4E221E5880F /* BackendAdapting.swift in Sources */,
 				5104388C43E478972E4AB7B3 /* FirebaseAdapter.swift in Sources */,
 				510431428431FB93046B98C2 /* BackendObjectTransformable.swift in Sources */,
+				5104370AEB89944C68C40B21 /* RemoteDataStoring.swift in Sources */,
+				510436B0FD92354037610167 /* FirebaseDataStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

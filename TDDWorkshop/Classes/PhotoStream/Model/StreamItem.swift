@@ -9,6 +9,7 @@ class StreamItem: BackendObjectTransformable {
 
     var title: String
     var creationDate: Date
+    var imageURL: URL?
     var imageData: Data?
 
     init(title: String, creationDate: Date) {
