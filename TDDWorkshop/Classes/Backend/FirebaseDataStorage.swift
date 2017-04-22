@@ -11,7 +11,7 @@ class FirebaseDataStorage: RemoteDataStoring {
 
     func upload(_ data: Data, identifiedBy name: String, completion: @escaping (URL?) -> ()) {
         let dataReference = storageReference.child(name)
-        let uploadTask = dataReference.put(data, metadata: nil) { metadata, error in
+        dataReference.put(data, metadata: nil) { metadata, error in
             guard let metadata = metadata else {
                 completion(nil)
                 return
@@ -23,7 +23,7 @@ class FirebaseDataStorage: RemoteDataStoring {
     func downloadData(identifiedBy name: String, from: URL, completion: @escaping (Data?) -> ()) {
         let dataReference = storageReference.child(name)
         dataReference.data(withMaxSize: maxDownloadSize) { data, error in
-            if let error = error {
+            if let _ = error {
                 completion(nil)
             } else {
                 completion(data!)

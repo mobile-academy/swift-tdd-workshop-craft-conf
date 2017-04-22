@@ -9,10 +9,15 @@ class StreamItemDownloaderSpec: QuickSpec {
         describe("StreamItemDownloader") {
 
             var sut: StreamItemDownloader!
-            
+
+            var backendFake: BackendAdapterFake!
+            var storageFake: RemoteStorageFake!
 
             beforeEach {
-                sut = StreamItemDownloader(parseAdapter: DefaultParseAdapter()) //TODO fix me!
+                backendFake = BackendAdapterFake()
+                storageFake = RemoteStorageFake()
+
+                sut = StreamItemDownloader(backendAdapter: backendFake, remoteStorage: storageFake)
             }
 
             describe("download items") {

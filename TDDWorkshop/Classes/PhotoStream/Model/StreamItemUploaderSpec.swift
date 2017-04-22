@@ -9,11 +9,14 @@ class StreamItemUploaderSpec: QuickSpec {
         describe("StreamItemUploader") {
 
             var sut: StreamItemUploader!
-            
+
+            var backendFake: BackendAdapterFake!
+            var storageFake: RemoteStorageFake!
 
             beforeEach {
-            
-                sut = StreamItemUploader(parseAdapter: DefaultParseAdapter()) //TODO fix me!
+                backendFake = BackendAdapterFake()
+                storageFake = RemoteStorageFake()
+                sut = StreamItemUploader(backendAdapter: backendFake, remoteStorage: storageFake)
             }
 
             describe("upload item") {
@@ -23,7 +26,7 @@ class StreamItemUploaderSpec: QuickSpec {
                 var capturedError: Error?
 
                 beforeEach {
-                    fixtureItem = StreamItem(title: "Foo Bar", imageData: NSData() as Data)
+                    fixtureItem = StreamItem(title: "Foo Bar", creationDate: Date())
                     capturedSuccess = nil
                     sut.uploadItem(fixtureItem) {
                         success, error in

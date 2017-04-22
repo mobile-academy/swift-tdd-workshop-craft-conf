@@ -1,8 +1,7 @@
 import Quick
 import Nimble
 
-@testable
-import TDDWorkshop
+@testable import TDDWorkshop
 
 class PhotoStreamViewControllerSpec: QuickSpec {
     override func spec() {
@@ -86,7 +85,7 @@ class PhotoStreamViewControllerSpec: QuickSpec {
                 }
             }
 
-            describe("righ bar button item") {
+            describe("right bar button item") {
                 var barButtonItem: UIBarButtonItem?
                 beforeEach {
                     barButtonItem = sut.navigationItem.rightBarButtonItem
@@ -109,7 +108,7 @@ class PhotoStreamViewControllerSpec: QuickSpec {
                 context("item was created") {
                     var fixtureItem: StreamItem!
                     beforeEach {
-                        fixtureItem = StreamItem(title: "Foo", imageData: NSData() as Data)
+                        fixtureItem = StreamItem(title: "Foo", creationDate: Date())
                         sut.creator(creator, didCreateItem: fixtureItem)
                     }
                     it("should upload item") {

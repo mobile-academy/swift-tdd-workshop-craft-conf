@@ -14,4 +14,8 @@ class StreamItemDownloaderFake: ItemDownloading {
         capturedCompletion = completion
         downloadItemsCalled = true
     }
+    
+    func downloadImage(for item: StreamItem, completion: @escaping () -> ()) {
+        
+    }
 }

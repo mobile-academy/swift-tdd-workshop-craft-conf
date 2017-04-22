@@ -13,7 +13,7 @@ target 'TDDWorkshop' do
   pod 'Firebase/Storage'
     
   target 'TDDWorkshopTests' do
-    inherit! :search_paths
+    inherit! :complete
     pod 'Quick'
     pod 'Nimble' 
   end

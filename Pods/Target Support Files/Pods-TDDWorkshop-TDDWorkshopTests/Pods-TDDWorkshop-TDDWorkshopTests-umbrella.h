@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_TDDWorkshopTestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_TDDWorkshopTestsVersionString[];
+FOUNDATION_EXPORT double Pods_TDDWorkshop_TDDWorkshopTestsVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_TDDWorkshop_TDDWorkshopTestsVersionString[];
 
