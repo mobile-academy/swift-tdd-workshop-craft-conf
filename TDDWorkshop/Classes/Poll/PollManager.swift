@@ -9,24 +9,27 @@
 import Foundation
 
 class PollManager {
-    static let sharedInstance = PollManager()
+    static let shared = PollManager()
+    let backendAdapting: BackendAdapting
+    private let userDefaults: UserDefaults
 
-    fileprivate(set) var pollAlreadySent: Bool = false
+    var isPollAlreadySent: Bool {
+        get {
+            return userDefaults.bool(forKey: "isPollAlreadySent")
+        }
+        set(newValue) {
+            userDefaults.set(newValue, forKey: "isPollAlreadySent")
+        }
+    }
+
+    init(backendAdapting: BackendAdapting = FirebaseAdapter(), userDefaults: UserDefaults = UserDefaults.standard) {
+        self.backendAdapting = backendAdapting
+        self.userDefaults = userDefaults
+    }
 
     func sendPoll(_ poll: Poll, completion: ((Bool) -> ())?) {
-//TODO fix me using Firebase!
-//        let pollObject = PFObject(className: "Poll", dictionary: poll.toJSON())
-//        pollObject.saveInBackground {
-//            [weak self] (success, error) in
-//
-//            self?.pollAlreadySent = success
-//
-//            if let error = error {
-//                print("Error sending poll: \(error.description)")
-//            }
-//            if let completion = completion {
-//                completion(success)
-//            }
-//        }
+        backendAdapting.write(poll)
+        isPollAlreadySent = true
+        completion?(true)
     }
 }

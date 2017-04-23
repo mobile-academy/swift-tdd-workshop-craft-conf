@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct Poll {
+struct Poll: BackendObjectTransformable {
     let name: String?
     let email: String?
     let comments: String?
@@ -17,8 +17,15 @@ struct Poll {
         var comment: String?
     }
 
+    init(name: String?, email: String?, comments: String?, items: [Item]?) {
+        self.name = name
+        self.email = email
+        self.comments = comments
+        self.items = items
+    }
+
     func isValid() -> Bool {
-        return self.toJSON() != nil
+        return toJSON() != nil
     }
 
     func toJSON() -> [String: Any]? {
@@ -37,17 +44,14 @@ struct Poll {
                 } ?? []
         ]
     }
-}
 
-extension Poll: BackendObjectTransformable {
-    static var name: String = ""
+    // MARK: BackendObjectTransformable
+
+    static var name: String = "Poll"
 
     var identifier: String {
-        get {
-            return ""
-        }
-        set {
-        }
+        get { return email?.data(using: .utf8)?.base64EncodedString() ?? "" }
+        set { }
     }
 
     // This type cannot be constructed from backend object.
@@ -56,7 +60,8 @@ extension Poll: BackendObjectTransformable {
     }
 
     func transformToBackendObject() -> BackendObject {
-        guard let json = toJSON() else  { fatalError() }
+        guard let json = toJSON() else { fatalError() }
         return json
     }
 }
+

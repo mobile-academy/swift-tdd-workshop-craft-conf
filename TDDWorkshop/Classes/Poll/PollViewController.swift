@@ -9,16 +9,6 @@
 import UIKit
 import Eureka
 
-typealias Emoji = String
-let 🎉 = "🎉", 👍🏻 = "👍🏻", 😎 = "😎", 👎🏻 = "👎🏻", 😡 = "😡"
-let symbols = [
-        "🎉": 5,
-        "👍🏻": 4,
-        "😎": 3,
-        "👎🏻": 2,
-        "😡": 1
-]
-
 class PollViewController: FormViewController {
     let sections = ["Intro", "Testing techniques", "Red Green Refactor", "Working with Legacy Code"]
     var pollBuilder: PollBuilder = PollBuilder()
@@ -33,194 +23,94 @@ class PollViewController: FormViewController {
         configureForm()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationItem.rightBarButtonItem =
-                PollManager.sharedInstance.pollAlreadySent
-                ? nil
-                : UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(didTapSend))
+	override func viewWillAppear(_ animated: Bool) {
+		navigationItem.rightBarButtonItem =
+		PollManager.shared.isPollAlreadySent
+				? nil
+				: UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(didTapSend))
+	}
 
-    }
+	func didTapSend() {
+        composePoll()
+        guard pollBuilder.isValid() else {
+            showInvalidPollAlert()
+			return
+		}
+		showConfirmationDialog {
+			[weak self] in
+			self?.sendPoll()
+		}
+	}
 
-    func didTapSend() {
-        guard self.pollBuilder.isValid() else {
-            self.showInvalidPollAlert()
-            return
-        }
-
-        let sendAction = UIAlertAction(title: "Yes", style: .default) {
-            [weak self] _ in
-            self?.sendPoll()
-        }
-
-        let alert = UIAlertController(title: "Confirmation", message: "You can send it only once.\nDo you want to continue?", preferredStyle: .alert)
-
-        alert.addAction(sendAction)
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        alert.preferredAction = sendAction
-
-        self.present(alert, animated: true, completion: nil)
-    }
-
-    func sendPoll() {
-        let poll = self.pollBuilder.create()
-        PollManager.sharedInstance.sendPoll(poll) {
+	func sendPoll() {
+        let poll = pollBuilder.create()
+        PollManager.shared.sendPoll(poll) {
             [weak self] success in
             if success {
                 self?.navigationItem.setRightBarButton(nil, animated: true)
+                self?.configureForm()
             }
         }
     }
 
-    func showInvalidPollAlert() {
+    func composePoll() {
+        let formValues = form.values()
+        pollBuilder
+                .with(name: formValues["name"] as? String)
+                .with(email: formValues["username"] as? String)
+                .with(comments: formValues["feedback"] as? String)
+
+        for (i, section) in sections.enumerated() {
+            pollBuilder
+                    .with(rate: formValues["rate(\(i)"] as? Int, forTitle: section)
+                    .with(comment: formValues["comment\(i)"] as? String, forTitle: section)
+        }
+    }
+
+    private func showInvalidPollAlert() {
         let alert = UIAlertController(title: "Error", message: "Can't send poll.\nFields with * are required.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func showConfirmationDialog(withAction action: @escaping (Void) -> ()) {
+        let alertAction = UIAlertAction(title: "Yes", style: .default) { _ in
+            action()
+        }
+        let alert = UIAlertController(title: "Confirmation", message: "You can send it only once.\nDo you want to continue?", preferredStyle: .alert)
+        alert.addAction(alertAction)
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.preferredAction = alertAction
+        present(alert, animated: true, completion: nil)
     }
 
     // MARK: Form configuration
 
     func configureForm() {
-        configureGeneralSection()
-        configureAgendaSections()
-    }
-
-    func configureGeneralSection() {
-        //TODO please fix me!
-/*        form +++ Section("General")
-                <<<
-                NameRow("name") {
-                    $0.title = "Name*"
-                    $0.placeholder = "John Smith?"
-                }
-                .onCellHighlightChangedChanged {
-                    [weak self] (_, row) in
-                    row.onCellUnHighlight {
-                        (_, row) in
-                        guard let _self = self else {
-                            return
-                        }
-                        if _self.validateText(row.value) {
-                            _self.pollBuilder.setName(row.value)
-                        } else {
-                            _self.showInvalidValueAlert(row.value)
-                        }
-                    }
-                }
-                <<<
-                EmailRow("username") {
-                    $0.title = "E-mail*"
-                    $0.placeholder = "you@example.com"
-                }
-                .onCellHighlight {
-                    [weak self] (_, row) in
-                    row.onCellUnHighlight {
-                        (_, row) in
-                        guard let _self = self else {
-                            return
-                        }
-                        if _self.validateEmail(row.value) {
-                            _self.pollBuilder.setEmail(row.value)
-                        } else {
-                            _self.showInvalidValueAlert(row.value)
-                        }
-                    }
-                }
-                <<<
-                TextAreaRow("feedback") {
-                    $0.title = "General feedback"
-                    $0.placeholder = "Write general feedback..."
-                }
-                .onCellUnHighlight {
-                    [weak self] (cell, row) in
-                    guard let _self = self else {
-                        return
-                    }
-                    if _self.validateComment(row.value) {
-                        _self.pollBuilder.setComments(row.value)
-                    } else {
-                        _self.showInvalidValueAlert(row.value)
-                    }
-                }
- */
-    }
-
-    func configureAgendaSections() {
-        //TODO please fix me!
-        /*
-        for (i, section) in sections.enumerated() {
-            form +++ Section(section)
-                    <<<
-                    SegmentedRow<Emoji>("rate\(i)") {
-                        [weak self] in
-                        $0.title = "What's your rate?"
-                        $0.options = [🎉, 👍🏻, 😎, 👎🏻, 😡]
-                        $0.value = 🎉
-                        guard let _self = self else {
-                            return
-                        }
-                        _self.pollBuilder.setRate(symbols[🎉], forTitle: section)
-                    }
-                    .onChange {
-                        [weak self] row in
-                        guard let value = row.value else {
-                            return
-                        }
-                        guard let _self = self else {
-                            return
-                        }
-                        _self.pollBuilder.setRate(symbols[value], forTitle: section)
-                    }
-                    <<<
-                    TextAreaRow("comment\(i)") {
-                        $0.title = "Comments"
-                        $0.placeholder = "Write your comments here..."
-                    }
-                    .onCellUnHighlight {
-                        [weak self] (cell, row) in
-                        guard let _self = self else {
-                            return
-                        }
-                        if _self.validateComment(row.value) {
-                            _self.pollBuilder.setComment(row.value, forTitle: section)
-                        } else {
-                            _self.showInvalidValueAlert(row.value)
-                        }
-                    }
-        }
- */
-    }
-
-    func showInvalidValueAlert(_ value: String?) {
-        if let printableValue = value {
-            let message = "Value you entered is invalid: \"\(printableValue)\""
-            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+        if PollManager.shared.isPollAlreadySent {
+            configureSentGeneralSection()
+        } else {
+            configureGeneralSection()
+            configureAgendaSections()
         }
     }
 
     // MARK: Validation
 
-    func validateComment(_ comment: String?) -> Bool {
-        guard let comment = comment, !comment.isEmpty else {
-            return false
-        }
+    func validate(comment: String?) -> Bool {
+        guard let comment = comment, !comment.isEmpty else { return false }
         return comment.characters.count > 10
     }
 
-    func validateEmail(_ email: String?) -> Bool {
-        guard let email = email, !email.isEmpty else {
-            return false
-        }
+    func validate(email: String?) -> Bool {
+        guard let email = email, !email.isEmpty else { return false }
         let pattern = "[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}"
         let regex = NSPredicate(format: "SELF MATCHES %@", pattern)
         return regex.evaluate(with: email)
     }
 
-    func validateText(_ text: String?) -> Bool {
-        guard let text = text, !text.isEmpty else {
-            return false
-        }
+    func validate(text: String?) -> Bool {
+        guard let text = text, !text.isEmpty else { return false }
         return [
                 CharacterSet.illegalCharacters,
                 CharacterSet.symbols,

@@ -21,22 +21,26 @@ final class PollBuilder {
 
     // MARK: Poll building
 
+    @discardableResult
     func with(name: String?) -> PollBuilder {
         self.name = name
         return self
     }
 
+    @discardableResult
     func with(email: String?) -> PollBuilder {
         self.email = email
         return self
     }
 
+    @discardableResult
     func with(comments: String?) -> PollBuilder {
         self.comments = comments
         return self
     }
 
-    func with(_ rate: Int?, forTitle title: String) -> PollBuilder {
+    @discardableResult
+    func with(rate: Int?, forTitle title: String) -> PollBuilder {
         if var item = items[title] {
             item.rate = rate
         } else {
@@ -45,6 +49,7 @@ final class PollBuilder {
         return self
     }
 
+    @discardableResult
     func with(comment: String?, forTitle title: String) -> PollBuilder {
         if var item = items[title] {
             item.comment = comment
