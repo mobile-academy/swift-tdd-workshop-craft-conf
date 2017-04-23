@@ -61,7 +61,10 @@
 		66DAB5CBF72625ABA774E3F3 /* Pods_TDDWorkshop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CA88AE434B35E35E3DABF4 /* Pods_TDDWorkshop.framework */; };
 		8108604A75D88659017F85C4 /* PollBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8108616680636625896E91D1 /* PollBuilder.swift */; };
 		8108617C634B070A968D7C43 /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810860A9AE4DC7C8BF0018EC /* Poll.swift */; };
+		810861F0AC37BD11445B4798 /* PollViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81086712FCE81DE99E8613C5 /* PollViewControllerSpec.swift */; };
 		810868C593F73FE24CC5BD20 /* PollViewController+FormConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810861C863AF9818CCC76544 /* PollViewController+FormConfiguration.swift */; };
+		8108698E12154122FA21A668 /* PollUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8108608DB2C9EC94A8210522 /* PollUploader.swift */; };
+		81086C77B870B68AB10A1856 /* PollManagerFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81086E195CD246327158961E /* PollManagerFake.swift */; };
 		86F2B4061BFD372D00AACB4C /* AgendaItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2B4051BFD372D00AACB4C /* AgendaItemCell.swift */; };
 		94B044141EAB8BC2009B86BA /* PhotoStreamViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043D867CB9F601F3B2D7B0 /* PhotoStreamViewControllerSpec.swift */; };
 		94B044151EAB8BC8009B86BA /* StreamItemDownloaderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51043992847AFBB2B320921D /* StreamItemDownloaderSpec.swift */; };
@@ -154,9 +157,12 @@
 		51043F3546921619F45D7FEE /* StreamItemUploaderFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamItemUploaderFake.swift; sourceTree = "<group>"; };
 		544D869B6D27C94555035768 /* Pods-TDDWorkshop-TDDWorkshopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDDWorkshop-TDDWorkshopTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TDDWorkshop-TDDWorkshopTests/Pods-TDDWorkshop-TDDWorkshopTests.debug.xcconfig"; sourceTree = "<group>"; };
 		55CA88AE434B35E35E3DABF4 /* Pods_TDDWorkshop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TDDWorkshop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8108608DB2C9EC94A8210522 /* PollUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollUploader.swift; sourceTree = "<group>"; };
 		810860A9AE4DC7C8BF0018EC /* Poll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poll.swift; sourceTree = "<group>"; };
 		8108616680636625896E91D1 /* PollBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollBuilder.swift; sourceTree = "<group>"; };
 		810861C863AF9818CCC76544 /* PollViewController+FormConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PollViewController+FormConfiguration.swift"; sourceTree = "<group>"; };
+		81086712FCE81DE99E8613C5 /* PollViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollViewControllerSpec.swift; sourceTree = "<group>"; };
+		81086E195CD246327158961E /* PollManagerFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollManagerFake.swift; sourceTree = "<group>"; };
 		83E4085C00127116E1BB3E09 /* Pods-TDDWorkshop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDDWorkshop.release.xcconfig"; path = "Pods/Target Support Files/Pods-TDDWorkshop/Pods-TDDWorkshop.release.xcconfig"; sourceTree = "<group>"; };
 		86F2B4051BFD372D00AACB4C /* AgendaItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaItemCell.swift; sourceTree = "<group>"; };
 		94CE8FE61EAA76C300FC8D70 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -247,6 +253,7 @@
 				1EDB874474DA5D4CF5A3AD8B /* UITableViewFake.swift */,
 				510437061E49196050106754 /* BackendAdapterFake.swift */,
 				51043E605FE262F2AF28B206 /* RemoteStorageFake.swift */,
+				81086E195CD246327158961E /* PollManagerFake.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -265,10 +272,12 @@
 		5104324D836308F5C548BAB5 /* Poll */ = {
 			isa = PBXGroup;
 			children = (
+				8108615ED4A0827539212E6E /* Model */,
 				A1DFDFA41BF3D126007D3C33 /* PollManager.swift */,
 				510430AFBBDF3557A5D8AF14 /* PollViewController.swift */,
-				8108615ED4A0827539212E6E /* Model */,
 				810861C863AF9818CCC76544 /* PollViewController+FormConfiguration.swift */,
+				81086712FCE81DE99E8613C5 /* PollViewControllerSpec.swift */,
+				8108608DB2C9EC94A8210522 /* PollUploader.swift */,
 			);
 			path = Poll;
 			sourceTree = "<group>";
@@ -741,6 +750,7 @@
 				8108604A75D88659017F85C4 /* PollBuilder.swift in Sources */,
 				8108617C634B070A968D7C43 /* Poll.swift in Sources */,
 				810868C593F73FE24CC5BD20 /* PollViewController+FormConfiguration.swift in Sources */,
+				8108698E12154122FA21A668 /* PollUploader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -772,6 +782,8 @@
 				1EDB8A916CF1970092D51CC8 /* AgendaProviderSpec.swift in Sources */,
 				5104355785B70B4C32ABE8F8 /* BackendAdapterFake.swift in Sources */,
 				5104398C9E05066D2588EC2C /* RemoteStorageFake.swift in Sources */,
+				810861F0AC37BD11445B4798 /* PollViewControllerSpec.swift in Sources */,
+				81086C77B870B68AB10A1856 /* PollManagerFake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

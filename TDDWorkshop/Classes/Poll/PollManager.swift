@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PollManager {
+class PollManager: PollUploader {
     static let shared = PollManager()
     let backendAdapting: BackendAdapting
     private let userDefaults: UserDefaults

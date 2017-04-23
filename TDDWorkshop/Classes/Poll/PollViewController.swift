@@ -9,8 +9,6 @@
 import UIKit
 import Eureka
 
-// TODO 1: Add spec file for PollViewController
-
 enum ValidatorType {
     case text
     case comment
@@ -24,7 +22,8 @@ struct ValidationContext {
 
 class PollViewController: FormViewController {
     let sections = ["Intro", "Testing techniques", "Red Green Refactor", "Working with Legacy Code"]
-    var pollBuilder: PollBuilder = PollBuilder()
+    var pollManager: PollUploader? = PollManager()
+    var pollBuilder: PollBuilder? = PollBuilder()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -37,17 +36,15 @@ class PollViewController: FormViewController {
     }
 
 	override func viewWillAppear(_ animated: Bool) {
-        // TODO 2: Write test that checks whether `rightBarButtonItem` is being set correctly depending on `pollAlreadySent` flag.
-        // Then, think what else could be tested for this class.
-
-        navigationItem.rightBarButtonItem = PollManager.shared.isPollAlreadySent
+        guard let pollUploader = pollManager else { fatalError() }
+        navigationItem.rightBarButtonItem = pollUploader.isPollAlreadySent
                 ? nil
                 : UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(didTapSend))
     }
 
 	func didTapSend() {
         composePoll()
-        guard pollBuilder.isValid() else {
+        guard let pollBuilder = pollBuilder, pollBuilder.isValid() else {
             showInvalidPollAlert()
 			return
 		}
@@ -58,8 +55,10 @@ class PollViewController: FormViewController {
 	}
 
 	func sendPoll() {
+        guard let pollUploader = pollManager else { fatalError() }
+        guard let pollBuilder = pollBuilder else { fatalError() }
         let poll = pollBuilder.create()
-        PollManager.shared.sendPoll(poll) {
+        pollUploader.sendPoll(poll) {
             [weak self] success in
             if success {
                 self?.navigationItem.setRightBarButton(nil, animated: true)
@@ -69,6 +68,7 @@ class PollViewController: FormViewController {
     }
 
     func composePoll() {
+        guard let pollBuilder = pollBuilder else { fatalError() }
         let formValues = form.values()
         pollBuilder
                 .with(name: formValues["name"] as? String)
@@ -102,7 +102,8 @@ class PollViewController: FormViewController {
     // MARK: Form configuration
 
     func configureForm() {
-        if PollManager.shared.isPollAlreadySent {
+        guard let pollUploader = pollManager else { fatalError() }
+        if pollUploader.isPollAlreadySent {
             configureSentGeneralSection()
         } else {
             let validators = [
