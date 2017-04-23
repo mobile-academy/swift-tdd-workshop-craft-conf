@@ -4,20 +4,26 @@
 
 import Foundation
 
-protocol ParseAdapting {} //TODO this is temporary
-
 class StreamItemUploader: ItemUploading {
 
     let backendAdapter: BackendAdapting
-    var transformer = StreamItemTransformer()
+    let remoteStorage: RemoteDataStoring
 
-    init (backendAdapter: BackendAdapting) {
+    init (backendAdapter: BackendAdapting, remoteStorage: RemoteDataStoring) {
         self.backendAdapter = backendAdapter
+        self.remoteStorage = remoteStorage
     }
 
     func uploadItem(_ streamItem: StreamItem, completion: @escaping (Bool, Error?) -> ()) {
-        //TODO fix me using Firebase!
-        //        let parseObject = transformer.parseObjectFromStreamItem(streamItem)
-        //        parseAdapter.uploadObject(parseObject, completion: completion)
+        if let data = streamItem.imageData {
+            remoteStorage.upload(data, identifiedBy: streamItem.identifier) { [weak self] url in
+                streamItem.imageURL = url
+                self?.backendAdapter.write(streamItem)
+                completion(true, nil)
+            }
+        } else {
+            backendAdapter.write(streamItem)
+            completion(true, nil)
+        }
     }
 }

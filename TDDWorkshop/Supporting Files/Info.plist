@@ -38,5 +38,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>You can add photo to the workshop&apos;s photo stream</string>
+	<key>NSCameraUsageDescription</key>
+	<string>You can take a photo and it to the workshop&apos;s photo stream</string>
 </dict>
 </plist>

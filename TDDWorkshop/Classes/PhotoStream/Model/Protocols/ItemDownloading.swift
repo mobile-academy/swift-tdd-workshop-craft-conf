@@ -6,4 +6,5 @@ import Foundation
 
 protocol ItemDownloading {
     func downloadItems(_ completion: @escaping ([StreamItem]?, Error?) -> ())
+    func downloadImage(for item: StreamItem, completion: @escaping () -> ())
 }

@@ -5,10 +5,6 @@
 import Foundation
 import Firebase
 
-enum FirebaseAdapterError: Error {
-    case parseError
-}
-
 class FirebaseAdapter: BackendAdapting {
 
     fileprivate lazy var databaseReference = FIRDatabase.database().reference()
@@ -19,11 +15,11 @@ class FirebaseAdapter: BackendAdapting {
 
     func readObjects<T>(ofType objectType: T.Type, completion: @escaping (BackendResult<T>) -> ()) where T: BackendObjectTransformable {
         databaseReference.child(objectType.name).observeSingleEvent(of: .value, with: { snapshot in
+            var objects: [T] = []
             guard let result = snapshot.value! as? BackendObject else {
-                completion(.failure(FirebaseAdapterError.parseError))
+                completion(.success(objects))
                 return
             }
-            var objects: [T] = []
             for (identifier, dict) in result {
                 if let backendObject = dict as? BackendObject,
                    var object = objectType.init(backendObject: backendObject) {

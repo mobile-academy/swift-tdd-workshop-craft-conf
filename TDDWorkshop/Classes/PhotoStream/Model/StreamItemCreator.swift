@@ -42,9 +42,11 @@ class StreamItemCreator: NSObject, ItemCreating, UIImagePickerControllerDelegate
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String:Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            let scaledImage = imageManipulator.scaleImage(image, maxDimension: 500)
+            let scaledImage = imageManipulator.scaleImage(image, maxDimension: 600)
             let imageData = imageManipulator.dataFromImage(scaledImage, quality: 0.7)
-            let streamItem = StreamItem(title: "Always the same", imageData: imageData)
+            let streamItem = StreamItem(title: "Always the same", creationDate: Date())
+            streamItem.imageData = imageData
+            streamItem.identifier = NSUUID().uuidString
 
             //TODO: Task 3
             //TODO: Fix issue that all stream items have the same, hardcoded title

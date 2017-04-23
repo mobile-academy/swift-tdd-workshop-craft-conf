@@ -24,8 +24,8 @@ class StreamItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let item = streamItem {
-            imageView.image = imageManipulator.imageFromData(item.imageData)
+        if let item = streamItem, let data = item.imageData {
+            imageView.image = imageManipulator.imageFromData(data)
         }
     }
 

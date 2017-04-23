@@ -5,20 +5,46 @@
 import Foundation
 import UIKit
 
-class StreamItem {
+class StreamItem: BackendObjectTransformable {
+
     var title: String
-    var imageData: Data
+    var creationDate: Date
+    var imageURL: URL?
+    var imageData: Data?
 
-    static let entityName = "StreamItem"
-
-    init(title: String, imageData: Data) {
+    init(title: String, creationDate: Date) {
         self.title = title
-        self.imageData = imageData
+        self.creationDate = creationDate
     }
-}
 
-extension StreamItem {
-    func image() -> UIImage? {
-        return UIImage(data: imageData)
+    // MARK:  BackendObjectTransformable
+
+    private struct Keys {
+        static let title = "title"
+        static let timestamp = "timestamp"
+        static let imageURL = "imageURL"
+    }
+
+    private(set) static var name: String = "StreamItem"
+    var identifier: String = ""
+
+    convenience required init?(backendObject: BackendObject) {
+        guard let title = backendObject[Keys.title] as? String,
+              let timestamp = backendObject[Keys.timestamp] as? NSNumber else { return nil }
+        let date = Date(timeIntervalSinceReferenceDate: timestamp.doubleValue)
+        self.init(title: title, creationDate: date)
+        if let stringURL = backendObject[Keys.imageURL] as? String, let url = URL(string: stringURL) {
+            imageURL = url
+        }
+    }
+
+    func transformToBackendObject() -> BackendObject {
+        var backendObject: BackendObject = [:]
+        backendObject[Keys.title] = title
+        backendObject[Keys.timestamp] = NSNumber(floatLiteral: creationDate.timeIntervalSinceReferenceDate)
+        if let url = imageURL {
+            backendObject[Keys.imageURL] = url.absoluteString
+        }
+        return backendObject
     }
 }

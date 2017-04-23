@@ -4,11 +4,12 @@
 
 import UIKit
 
-class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegate {
+class PhotoStreamViewController: UICollectionViewController {
 
     // MARK: Properties
 
     var backendAdapter: BackendAdapting
+    var remoteStorage: RemoteDataStoring
     var downloader: ItemDownloading
     var creator: ItemCreating
     var uploader: ItemUploading
@@ -23,12 +24,13 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
 
     required init?(coder: NSCoder) {
         backendAdapter = FirebaseAdapter()
+        remoteStorage = FirebaseDataStorage()
         presenter = DefaultViewControllerPresenter()
         imageManipulator = DefaultImageManipulator()
         refreshControl = UIRefreshControl()
-        downloader = StreamItemDownloader(backendAdapter: backendAdapter)
+        downloader = StreamItemDownloader(backendAdapter: backendAdapter, remoteStorage: remoteStorage)
         creator = StreamItemCreator(presenter: presenter)
-        uploader = StreamItemUploader(backendAdapter: backendAdapter)
+        uploader = StreamItemUploader(backendAdapter: backendAdapter, remoteStorage: remoteStorage)
         alertActionFactory = DefaultAlertActionFactory()
 
         super.init(coder: coder)
@@ -52,9 +54,12 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoStreamCell", for: indexPath)
-        if let photoCell = cell as? PhotoStreamCell {
-            let streamItem = streamItems[indexPath.row]
-            photoCell.imageView.image = imageManipulator.imageFromData(streamItem.imageData)
+        let streamItem = streamItems[indexPath.row]
+        guard let photoCell = cell as? PhotoStreamCell else { return cell }
+        if let data = streamItem.imageData {
+            photoCell.imageView.image = imageManipulator.imageFromData(data)
+        } else {
+            downloadImage(for: photoCell, at: indexPath)
         }
         return cell
     }
@@ -71,17 +76,16 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let itemViewController = segue.destination as? StreamItemViewController,
-        let cell = sender as? UICollectionViewCell,
-        let indexPath = collectionView?.indexPath(for: cell) {
+           let cell = sender as? UICollectionViewCell,
+           let indexPath = collectionView?.indexPath(for: cell) {
             itemViewController.streamItem = streamItems[indexPath.item]
         }
     }
+}
 
-    // MARK: ItemCreatingDelegate
-
+extension PhotoStreamViewController: ItemCreatingDelegate {
     func creator(_ creator: ItemCreating, didCreateItem item: StreamItem) {
-        uploader.uploadItem(item) {
-            [weak self] success, error in
+        uploader.uploadItem(item) { [weak self] success, error in
             if success == false {
                 self?.presentErrorAlertWithMessage("Failed to upload stream item!")
             } else {
@@ -95,13 +99,14 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
     func creator(_ creator: ItemCreating, failedWithError: Error) {
         presentErrorAlertWithMessage("Failed to create stream item!")
     }
+}
 
-    // MARK: Private methods
-
+extension PhotoStreamViewController {
     fileprivate func presentErrorAlertWithMessage(_ message: String) {
         let errorAlert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         errorAlert.addAction(alertActionFactory.createActionWithTitle("Cancel", style: .cancel) {
-            action in })
+            action in
+        })
         presenter.presentViewController(errorAlert)
     }
 
@@ -112,14 +117,25 @@ class PhotoStreamViewController: UICollectionViewController, ItemCreatingDelegat
     }
 
     fileprivate func downloadStreamItems() {
-        downloader.downloadItems {
-            [weak self] items, error in
+        downloader.downloadItems { [weak self] items, error in
             self?.refreshControl.endRefreshing()
-            if error != nil || items == nil {
+            if error != nil {
                 self?.presentErrorAlertWithMessage("Failed to download stream items!")
             } else {
-                self?.streamItems = items!
+                self?.streamItems = items ?? []
                 self?.collectionView?.reloadData()
+            }
+        }
+    }
+
+    fileprivate func downloadImage(for cell: PhotoStreamCell, at indexPath: IndexPath) {
+        let streamItem = streamItems[indexPath.row]
+        downloader.downloadImage(for: streamItem) { [weak self] in
+            if let cellIndexPath = self?.collectionView?.indexPath(for: cell), indexPath != cellIndexPath {
+                return
+            }
+            if let data = streamItem.imageData {
+                cell.imageView.image = self?.imageManipulator.imageFromData(data)
             }
         }
     }
