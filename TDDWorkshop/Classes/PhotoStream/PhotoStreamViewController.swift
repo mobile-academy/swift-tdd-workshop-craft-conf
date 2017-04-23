@@ -89,9 +89,7 @@ extension PhotoStreamViewController: ItemCreatingDelegate {
             if success == false {
                 self?.presentErrorAlertWithMessage("Failed to upload stream item!")
             } else {
-                // TODO: Task 1
-                // TODO: add `item` to `streamItems`
-                // TODO: reload data on `collectionView`
+                self?.add(item)
             }
         }
     }
@@ -138,6 +136,11 @@ extension PhotoStreamViewController {
                 cell.imageView.image = self?.imageManipulator.imageFromData(data)
             }
         }
+    }
+
+    fileprivate func add(_ item:StreamItem) {
+        streamItems.append(item)
+        collectionView?.reloadData()
     }
 }
 
