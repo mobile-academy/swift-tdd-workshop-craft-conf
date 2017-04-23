@@ -13,6 +13,7 @@ class PollViewController: FormViewController {
     let sections = ["Intro", "Testing techniques", "Red Green Refactor", "Working with Legacy Code"]
     var pollManager: PollUploader? = PollManager()
     var pollBuilder: PollBuilder? = PollBuilder()
+    var validatorsFactory: ValidatorsFactory? = DefaultValidatorsFactory()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -95,11 +96,16 @@ class PollViewController: FormViewController {
         if pollUploader.isPollAlreadySent {
             configureSentGeneralSection()
         } else {
-            let validators = [
-                    ValidatorType.text: ValidationContext(validator: validate(text:), message: "Invalid characters"),
-                    ValidatorType.comment: ValidationContext(validator: validate(comment:), message: "Your comment is too short"),
-                    ValidatorType.email: ValidationContext(validator: validate(email:), message: "Invalid email format")
-            ]
+            guard let validatorsFactory = validatorsFactory else { fatalError() }
+            var validators: [ValidatorType: ValidationContext] = [:]
+
+            ValidatorType.allElements
+                    .map { ($0, validatorsFactory.validator(for: $0)) }
+                    .map { ($0, ValidationContext(validator: $1.validate(text:), message: $1.validationFailMessage())) }
+                    .forEach {
+                        validators[$0] = $1
+                    }
+
             configureGeneralSection(with: validators)
             configureAgendaSections(with: validators)
         }

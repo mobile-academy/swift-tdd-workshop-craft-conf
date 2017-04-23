@@ -9,4 +9,6 @@ enum ValidatorType {
     case text
     case comment
     case email
+
+    static var allElements: [ValidatorType] = [.text, .comment, .email]
 }

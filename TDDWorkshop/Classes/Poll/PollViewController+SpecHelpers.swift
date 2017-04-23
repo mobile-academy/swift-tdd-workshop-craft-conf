@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import Eureka
 
 @testable import TDDWorkshop
 
@@ -13,9 +14,9 @@ extension PollViewController {
 		guard let row = form.rowBy(tag: identifier) else {
 			fatalError("Can't simulate text input for row '\(identifier)'")
 		}
-		row.isHighlighted = true
+		beginEditing(of: row.baseCell as! Cell<String>)
 		row.baseValue = text
-		row.isHighlighted = false
+		endEditing(of: row.baseCell as! Cell<String>)
 	}
 
 }

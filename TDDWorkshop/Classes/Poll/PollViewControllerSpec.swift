@@ -37,6 +37,10 @@ class PollViewControllerSpec: QuickSpec {
                 it("should have poll manager") {
                     expect(sut.pollManager).toNot(beNil())
                 }
+
+                it("should validator factory") {
+                    expect(sut.validatorsFactory).toNot(beNil())
+                }
             }
 
             describe("behavior") {
@@ -99,6 +103,25 @@ class PollViewControllerSpec: QuickSpec {
 
                     it("should nil out button item") {
                         expect(sut.navigationItem.rightBarButtonItem).to(beNil())
+                    }
+                }
+
+                describe("validation factory usage for name") {
+                    var factory: ValidatorsFactoryFake?
+                    var validator: ValidatorFake?
+
+                    beforeEach {
+                        validator = ValidatorFake()
+                        factory = ValidatorsFactoryFake(validator: validator!)
+                        sut.validatorsFactory = factory
+                        sut.loadView()
+                        sut.viewDidLoad()
+
+                        sut.simulateTextInput(forRowWithIdentifier: "name", text: "the string")
+                    }
+
+                    it("should validate text with proper validator") {
+                        expect(validator?.didCallValidateText).to(beTrue())
                     }
                 }
             }
