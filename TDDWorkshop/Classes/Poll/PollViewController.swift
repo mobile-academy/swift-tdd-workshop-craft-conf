@@ -9,17 +9,6 @@
 import UIKit
 import Eureka
 
-enum ValidatorType {
-    case text
-    case comment
-    case email
-}
-
-struct ValidationContext {
-    let validator: (String?) -> Bool
-    let message: String
-}
-
 class PollViewController: FormViewController {
     let sections = ["Intro", "Testing techniques", "Red Green Refactor", "Working with Legacy Code"]
     var pollManager: PollUploader? = PollManager()
@@ -117,6 +106,16 @@ class PollViewController: FormViewController {
     }
 
     // MARK: Validation
+
+    // TODO: Extract and test validation logic (to make it more reusable, reliable and testable).
+    // Hint 1: To simulate input on form cell use this code: `simulateTextInput(forRowIdentifier:, text:)`.
+    //          E.g.: simulateTextInput(forRowIdentifier: "feedback", text: "test string")
+    //          List of identifiers is in `PollViewController+FormConfiguration.swift` file or in `composePoll` method.
+    //
+    // Hint 2: Possible solution:
+    //      - Create common Validator protocol
+    //      - Create different validators
+    //      - Create validators factory (remember about tests)
 
     func validate(comment: String?) -> Bool {
         guard let comment = comment, !comment.isEmpty else { return false }
