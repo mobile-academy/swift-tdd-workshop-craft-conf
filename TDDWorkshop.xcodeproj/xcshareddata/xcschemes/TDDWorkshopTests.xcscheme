@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A162F1671BEA992400262528"
-            BuildableName = "TDDWorkshopTests.xctest"
-            BlueprintName = "TDDWorkshopTests"
+            BlueprintIdentifier = "A162F1531BEA992400262528"
+            BuildableName = "TDDWorkshop.app"
+            BlueprintName = "TDDWorkshop"
             ReferencedContainer = "container:TDDWorkshop.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -61,15 +61,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A162F1671BEA992400262528"
-            BuildableName = "TDDWorkshopTests.xctest"
-            BlueprintName = "TDDWorkshopTests"
+            BlueprintIdentifier = "A162F1531BEA992400262528"
+            BuildableName = "TDDWorkshop.app"
+            BlueprintName = "TDDWorkshop"
             ReferencedContainer = "container:TDDWorkshop.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
