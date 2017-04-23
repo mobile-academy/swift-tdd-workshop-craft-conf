@@ -9,6 +9,19 @@
 import UIKit
 import Eureka
 
+// TODO 1: Add spec file for PollViewController
+
+enum ValidatorType {
+    case text
+    case comment
+    case email
+}
+
+struct ValidationContext {
+    let validator: (String?) -> Bool
+    let message: String
+}
+
 class PollViewController: FormViewController {
     let sections = ["Intro", "Testing techniques", "Red Green Refactor", "Working with Legacy Code"]
     var pollBuilder: PollBuilder = PollBuilder()
@@ -24,11 +37,13 @@ class PollViewController: FormViewController {
     }
 
 	override func viewWillAppear(_ animated: Bool) {
-		navigationItem.rightBarButtonItem =
-		PollManager.shared.isPollAlreadySent
-				? nil
-				: UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(didTapSend))
-	}
+        // TODO 2: Write test that checks whether `rightBarButtonItem` is being set correctly depending on `pollAlreadySent` flag.
+        // Then, think what else could be tested for this class.
+
+        navigationItem.rightBarButtonItem = PollManager.shared.isPollAlreadySent
+                ? nil
+                : UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(didTapSend))
+    }
 
 	func didTapSend() {
         composePoll()
@@ -90,8 +105,13 @@ class PollViewController: FormViewController {
         if PollManager.shared.isPollAlreadySent {
             configureSentGeneralSection()
         } else {
-            configureGeneralSection()
-            configureAgendaSections()
+            let validators = [
+                    ValidatorType.text: ValidationContext(validator: validate(text:), message: "Invalid characters"),
+                    ValidatorType.comment: ValidationContext(validator: validate(comment:), message: "Your comment is too short"),
+                    ValidatorType.email: ValidationContext(validator: validate(email:), message: "Invalid email format")
+            ]
+            configureGeneralSection(with: validators)
+            configureAgendaSections(with: validators)
         }
     }
 
