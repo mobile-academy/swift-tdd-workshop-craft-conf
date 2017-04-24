@@ -914,7 +914,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "TDDWorkshop/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.mobile-academy.TDDWorkshop";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.mobile-academy.TDDWorkshop-Budapest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/${PRODUCT_NAME}/Supporting Files/TDDWorkshop-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -928,7 +928,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "TDDWorkshop/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.mobile-academy.TDDWorkshop";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.mobile-academy.TDDWorkshop-Budapest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/${PRODUCT_NAME}/Supporting Files/TDDWorkshop-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
