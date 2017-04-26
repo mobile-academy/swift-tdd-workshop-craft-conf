@@ -11,7 +11,9 @@ import Eureka
 
 class PollViewController: FormViewController {
     let sections = ["Intro", "Testing techniques", "Red Green Refactor", "Working with Legacy Code"]
-    var pollBuilder: PollBuilder = PollBuilder()
+    var pollManager: PollUploader? = PollManager()
+    var pollBuilder: PollBuilder? = PollBuilder()
+    var validatorsFactory: ValidatorsFactory? = DefaultValidatorsFactory()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -24,15 +26,15 @@ class PollViewController: FormViewController {
     }
 
 	override func viewWillAppear(_ animated: Bool) {
-		navigationItem.rightBarButtonItem =
-		PollManager.shared.isPollAlreadySent
-				? nil
-				: UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(didTapSend))
-	}
+        guard let pollUploader = pollManager else { fatalError() }
+        navigationItem.rightBarButtonItem = pollUploader.isPollAlreadySent
+                ? nil
+                : UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(didTapSend))
+    }
 
 	func didTapSend() {
         composePoll()
-        guard pollBuilder.isValid() else {
+        guard let pollBuilder = pollBuilder, pollBuilder.isValid() else {
             showInvalidPollAlert()
 			return
 		}
@@ -43,8 +45,10 @@ class PollViewController: FormViewController {
 	}
 
 	func sendPoll() {
+        guard let pollUploader = pollManager else { fatalError() }
+        guard let pollBuilder = pollBuilder else { fatalError() }
         let poll = pollBuilder.create()
-        PollManager.shared.sendPoll(poll) {
+        pollUploader.sendPoll(poll) {
             [weak self] success in
             if success {
                 self?.navigationItem.setRightBarButton(nil, animated: true)
@@ -54,6 +58,7 @@ class PollViewController: FormViewController {
     }
 
     func composePoll() {
+        guard let pollBuilder = pollBuilder else { fatalError() }
         let formValues = form.values()
         pollBuilder
                 .with(name: formValues["name"] as? String)
@@ -87,15 +92,36 @@ class PollViewController: FormViewController {
     // MARK: Form configuration
 
     func configureForm() {
-        if PollManager.shared.isPollAlreadySent {
+        guard let pollUploader = pollManager else { fatalError() }
+        if pollUploader.isPollAlreadySent {
             configureSentGeneralSection()
         } else {
-            configureGeneralSection()
-            configureAgendaSections()
+            guard let validatorsFactory = validatorsFactory else { fatalError() }
+            var validators: [ValidatorType: ValidationContext] = [:]
+
+            ValidatorType.allElements
+                    .map { ($0, validatorsFactory.validator(for: $0)) }
+                    .map { ($0, ValidationContext(validator: $1.validate(text:), message: $1.validationFailMessage())) }
+                    .forEach {
+                        validators[$0] = $1
+                    }
+
+            configureGeneralSection(with: validators)
+            configureAgendaSections(with: validators)
         }
     }
 
     // MARK: Validation
+
+    // TODO: Extract and test validation logic (to make it more reusable, reliable and testable).
+    // Hint 1: To simulate input on form cell use this code: `simulateTextInput(forRowIdentifier:, text:)`.
+    //          E.g.: simulateTextInput(forRowIdentifier: "feedback", text: "test string")
+    //          List of identifiers is in `PollViewController+FormConfiguration.swift` file or in `composePoll` method.
+    //
+    // Hint 2: Possible solution:
+    //      - Create common Validator protocol
+    //      - Create different validators
+    //      - Create validators factory (remember about tests)
 
     func validate(comment: String?) -> Bool {
         guard let comment = comment, !comment.isEmpty else { return false }
